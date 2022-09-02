@@ -1,0 +1,13 @@
+* {
+  padding: 0%;
+  margin: 0;
+}
+
+.ds {
+  align-items: center;
+  font-size: 500px;
+}
+
+.rdt_TableHeadRow {
+  background-color: green;
+}
