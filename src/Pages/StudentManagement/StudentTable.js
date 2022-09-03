@@ -66,11 +66,14 @@ export default function StudentTable() {
   };
 
   return (
-    <Paper sx={{ width: "90%", overflow: "hidden" }}>
+    <Paper 
+    style={{ borderRadius: '25px'}}
+    sx={{ width: "90%", overflow: "hidden" }}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
-            <TableRow>
+            <TableRow
+            >
               {columns.map((column) => (
                 <TableCell
                   key={column.id}

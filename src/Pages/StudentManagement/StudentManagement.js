@@ -1,14 +1,23 @@
+import { Button } from "@mui/material";
 import React from "react";
-import "../../App.css";
+import "./StudentManagement.css";
+
 import StudentTable from "./StudentTable";
 
 const StudentManagement = () => {
   return (
     <>
-      <div className="cr">StudentManagement</div>
-      <br></br>
-      <StudentTable>
-    </StudentTable>
+      <div className="box-container">
+        <div className="button-row">
+          <div className="Excel-sheet-button">
+            <Button className="pro-button">Excel</Button>
+          </div>
+          <div className="Add-Student">
+            <Button className="pro-button">Add Student</Button>
+          </div>
+        </div>
+        <StudentTable />
+      </div>
     </>
   );
 };
