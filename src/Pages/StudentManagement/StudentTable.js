@@ -54,7 +54,7 @@ const rows = [
 
 export default function StudentTable() {
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -68,12 +68,13 @@ export default function StudentTable() {
   return (
     <Paper 
     style={{ borderRadius: '25px'}}
-    sx={{ width: "90%", overflow: "hidden" }}>
-      <TableContainer sx={{ maxHeight: 440 }}>
+    sx={{ width: "100%", overflow: "hidden" }}>
+      <TableContainer sx={{ height: "max-content"}}>
         <Table stickyHeader aria-label="sticky table">
+
+          {/* ......................header row of Table......................  */}
           <TableHead>
-            <TableRow
-            >
+            <TableRow>
               {columns.map((column) => (
                 <TableCell
                   key={column.id}
@@ -110,8 +111,10 @@ export default function StudentTable() {
           </TableBody>
         </Table>
       </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
+
+      {/* ......................table pagination ........................... */}
+      <TablePagination 
+        rowsPerPageOptions={[5, 10,{ value: -1, label: 'All' }]}
         component="div"
         count={rows.length}
         rowsPerPage={rowsPerPage}
