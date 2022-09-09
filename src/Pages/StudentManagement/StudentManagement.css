@@ -21,6 +21,18 @@ button.pro-button {
   text-overflow: ellipsis;
 }
 
+button.pro-button:hover {
+  background-color: #346f82;
+}
+
+button.pro-button:hover {
+  cursor: pointer;
+  background-color: #427a8e42;
+}
+button.pro-button #active {
+  background-color: #346f82;
+}
+
 div.Excel-sheet-button {
   position: relative;
   display: inline-block;
