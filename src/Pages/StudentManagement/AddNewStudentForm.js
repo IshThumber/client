@@ -9,8 +9,8 @@ export default function AddNewStudentForm() {
           <h1 className="form-title">Student Detail</h1>
 
           <form action="post" className="add-student-form">
-    
-           
+
+
             <div className="input-grid">
 
               <div className="input-container">
@@ -19,7 +19,7 @@ export default function AddNewStudentForm() {
               </div>
 
               <div className="input-container">
-                <label htmlFor="GR-number">General Register Number</label>
+                <label htmlFor="GR-number">GR Number</label>
                 <input type="number" name="GR-number" id="GR-number" />
               </div>
 
