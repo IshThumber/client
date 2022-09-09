@@ -4,7 +4,7 @@ import "../../App.css";
 const CredentialsManagement = () => {
   return (
     <>
-      <div className="cr">CredentialsManagement</div>
+      <div>CredentialsManagement</div>
     </>
   );
 };

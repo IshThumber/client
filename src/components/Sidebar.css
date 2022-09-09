@@ -19,6 +19,27 @@ body {
   }
   .sidebar-container .Sidebar {
     position: fixed;
+=======
+ .Flex {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .Flex .Sidebar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 20%;
+  }
+  .Flex .Content-container {
+    width: 80%;
+    margin-left: 21%;
+  } 
+  
+  .Sidebar-container .Sidebar {
+    padding-top: 30px;
+>>>>>>> eae67ca007e5cf1c4d6ba8f109dfab26c2643c5f
     height: 100%;
     width: 100%;
     background-color: #2b3d53;
@@ -33,7 +54,10 @@ body {
   .SidebarList .row {
     width: 100%;
     height: 50px;
+<<<<<<< HEAD
     border: 1px solid black;
+=======
+>>>>>>> eae67ca007e5cf1c4d6ba8f109dfab26c2643c5f
     list-style-type: none;
     margin: 0%;
     display: flex;
@@ -62,6 +86,7 @@ body {
   .row #title {
     flex: 70%;
   }
+<<<<<<< HEAD
   
   .container {
     width: auto;

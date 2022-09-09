@@ -4,7 +4,6 @@ import CastDataTable from "./CastDataTable";
 const Analytics = () => {
   return (
     <>
-      
       <CastDataTable></CastDataTable>
     </>
   );

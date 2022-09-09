@@ -1,5 +1,5 @@
 import "./App.css";
-import Sidebar from "./components/Sidebar";
+import Sidebar from "./components/Sidebar.js";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React from "react";
 import Credentials from "./Pages/CredentialsManagement/CredentialsManagement.js";
