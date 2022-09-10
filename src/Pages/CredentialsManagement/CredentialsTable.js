@@ -1,10 +1,4 @@
-import React, { useState } from "react";
-
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
+import * as React from "react";
 import { Paper } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -13,45 +7,37 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
+import { useState } from "react";
 import data from "../StudentManagement/mock-data.json";
-import AddNewStudentForm from "../StudentManagement/AddNewStudentForm";
 
-export default function CastDataTable() {
-  // START TABLE...............................
-  function add() {
-    return (
-      <>
-        <AddNewStudentForm></AddNewStudentForm>
-      </>
-    );
-  }
+const columns = [
+  {
+    id: "Standard",
+    align: "center",
+    label: "Standard",
+    minWidth: 50,
+  },
+  {
+    id: "UserName",
+    align: "center",
+    label: "UserName",
+    minWidth: 100,
+  },
+  {
+    id: "Password",
+    label: "Password",
+    minWidth: 150,
+    align: "center",
+  },
+  {
+    id: "SR",
+    label: "GRNumber",
+    minWidth: 20,
+    align: "center",
+  },
+];
 
-  const columns = [
-    {
-      id: "SR",
-      align: "center",
-      label: "SR",
-      minWidth: 50,
-    },
-    {
-      id: "Name",
-      align: "center",
-      label: "Name",
-      minWidth: 100,
-    },
-    {
-      id: "UNumber",
-      label: "UNumber",
-      minWidth: 150,
-      align: "center",
-    },
-    {
-      id: "GRNumber",
-      label: "GRNumber",
-      minWidth: 20,
-      align: "center",
-    },
-  ];
+export default function CredentialsTable() {
   const [rows, setRow] = useState(data);
 
   const [page, setPage] = React.useState(0);
@@ -66,40 +52,10 @@ export default function CastDataTable() {
     setPage(0);
   };
 
-  //................................FINISH TABLE
-
-  const [age, setAge] = useState("");
-
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
-
   return (
     <>
-      {/*Start of Drop-down Menu */}
-      <Box sx={{ minWidth: 50, maxWidth: 100, m: 1 }}>
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Class</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={age}
-            label="Class"
-            onChange={handleChange}
-          >
-            <MenuItem value={3}>3</MenuItem>
-            <MenuItem value={4}>4</MenuItem>
-            <MenuItem value={5}>5</MenuItem>
-            <MenuItem value={6}>6</MenuItem>
-            <MenuItem value={7}>7</MenuItem>
-            <MenuItem value={8}>8</MenuItem>
-          </Select>
-        </FormControl>
-      </Box>
-      {/* End Of Drop-down Menu */}
-
       <Paper
-        style={{ borderRadius: "25px" }}
+        style={{marginTop:"20px" ,borderRadius: "25px" }}
         sx={{ width: "100%", overflow: "hidden" }}
       >
         <TableContainer sx={{ height: "max-content" }}>
@@ -120,6 +76,7 @@ export default function CastDataTable() {
                     {column.label}
                   </TableCell>
                 ))}
+              
               </TableRow>
             </TableHead>
             <TableBody>
@@ -135,8 +92,10 @@ export default function CastDataTable() {
                     >
                       {columns.map((column) => {
                         const value = row[column.id];
+                       
                         return (
                           <TableCell key={column.id} align={column.align}>
+                          
                             {column.format && typeof value === "number"
                               ? column.format(value)
                               : value}

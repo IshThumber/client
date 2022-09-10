@@ -3,6 +3,7 @@ import "../../App.css";
 import AddNewStudentForm from "../StudentManagement/AddNewStudentForm";
 import Sidebar from "../../components/Sidebar.js";
 function Dashboard() {
+<<<<<<< Updated upstream
     return (
         <>
             <div className="Flex">
@@ -14,5 +15,13 @@ function Dashboard() {
             </div>
         </>
     );
+=======
+  return (
+    <>
+      <AddNewStudentForm></AddNewStudentForm>
+      <div>Dashboard</div>
+    </>
+  );
+>>>>>>> Stashed changes
 }
 export default Dashboard;

@@ -1,5 +1,6 @@
 import React from "react";
 import "../../App.css";
+<<<<<<< Updated upstream
 import Sidebar from "../../components/Sidebar.js";
 const CredentialsManagement = () => {
     return (
@@ -12,5 +13,14 @@ const CredentialsManagement = () => {
             </div>
         </>
     );
+=======
+import CredentialsTable from "./CredentialsTable.js";
+function CredentialsManagement(){
+  return (
+    <>
+      <CredentialsTable></CredentialsTable>
+    </>
+  );
+>>>>>>> Stashed changes
 };
 export default CredentialsManagement;
