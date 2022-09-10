@@ -5,27 +5,27 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { MdAnalytics } from "react-icons/md";
 
 export const SidebarData = [
-  {
-    title: "Dashboard",
-    icon: <AiFillHome />,
-    link: "/",
-  },
+    {
+        title: "Dashboard",
+        icon: <AiFillHome />,
+        link: "/admin/",
+    },
 
-  {
-    title: "Student Management",
-    icon: <FaUsers />,
-    link: "/StudentManagement",
-  },
+    {
+        title: "Manage Students",
+        icon: <FaUsers />,
+        link: "/admin/StudentManagement/",
+    },
 
-  {
-    title: "Credentials Management",
-    icon: <RiLockPasswordFill />,
-    link: "/Credentials",
-  },
+    {
+        title: "Manage Credentials",
+        icon: <RiLockPasswordFill />,
+        link: "/admin/Credentials/",
+    },
 
-  {
-    title: "Analytics",
-    icon: <MdAnalytics />,
-    link: "/Analytics",
-  },
+    {
+        title: "Result Analysis",
+        icon: <MdAnalytics />,
+        link: "/admin/Analytics/",
+    },
 ];
