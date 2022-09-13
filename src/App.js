@@ -1,6 +1,6 @@
 import "./App.css";
 import Sidebar from "./components/Sidebar.js";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React from "react";
 import Dashboard from "./Pages/Dashboard/Dashboard.js";
 import Analytics from "./Pages/Analytics/Analytics.js";
