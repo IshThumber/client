@@ -3,7 +3,7 @@ import "./AddNewStudentForm.css";
 export default function AddNewStudentForm() {
   return (
     <>
-      <section className="full-screen-container">
+      <section className="full-screen-container-form">
 
         <div className="form-container">
           <h1 className="form-title">Student Detail</h1>
@@ -13,17 +13,17 @@ export default function AddNewStudentForm() {
 
             <div className="input-grid">
 
-              <div className="input-container">
+              <div className="form-input-container">
                 <label htmlFor="academic-year">Academic Year</label>
                 <select name="year-dropdown" id="year-dropdown"></select>
               </div>
 
-              <div className="input-container">
+              <div className="form-input-container">
                 <label htmlFor="GR-number">GR Number</label>
                 <input type="number" name="GR-number" id="GR-number" />
               </div>
 
-              <div className="input-container">
+              <div className="form-input-container">
                 <label htmlFor="UDISE-number">UDISE</label>
                 <input
                   type="number"
@@ -33,7 +33,7 @@ export default function AddNewStudentForm() {
                 />
               </div>
 
-              <div className="input-container">
+              <div className="form-input-container">
                 <label htmlFor="student-name">Student Name</label>
                 <input
                   type="text"
@@ -43,7 +43,7 @@ export default function AddNewStudentForm() {
                 />
               </div>
 
-              <div className="input-container">
+              <div className="form-input-container">
                 <label htmlFor="father-name">Father's Name</label>
                 <input
                   type="text"
@@ -53,7 +53,7 @@ export default function AddNewStudentForm() {
                 />
               </div>
 
-              <div className="input-container">
+              <div className="form-input-container">
                 <label htmlFor="last-name">Last Name</label>
                 <input
                   type="text"
@@ -63,7 +63,7 @@ export default function AddNewStudentForm() {
                 />
               </div>
 
-              <div className=" input-container">
+              <div className="form-input-container">
                 <label htmlFor="gender">Gender</label>
                 <div className="div-gender">
                   <input
@@ -83,7 +83,7 @@ export default function AddNewStudentForm() {
               </div>
 
 
-              <div className="input-container">
+              <div className="form-input-container">
 
                 <label htmlFor="caste">Caste</label>
                 <select name="caste-dropdown" id="caste-dropdown">
@@ -97,7 +97,7 @@ export default function AddNewStudentForm() {
                 </select>
               </div>
 
-              <div className="input-container">
+              <div className="form-input-container">
                 <label htmlFor="standard">Standard</label>
                 <select name="standard-dropdown" id="standard-dropdown">
                   <option value="none" selected="" disabled="" hidden="">
@@ -114,7 +114,7 @@ export default function AddNewStudentForm() {
                 </select>
               </div>
 
-              <div className="input-container">
+              <div className="form-input-container">
                 <label htmlFor="address">Address</label>
                 <input
                   type="text"
@@ -124,7 +124,7 @@ export default function AddNewStudentForm() {
                 />
               </div>
 
-              <div className="input-container">
+              <div className="form-input-container">
                 <label htmlFor="contact">Contact Number</label>
                 <input
                   type="number"
