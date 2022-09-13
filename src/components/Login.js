@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import pic1 from "./ec1.svg"
+import pic2 from "./ec2.svg"
+import pic3 from "./ec3.svg"
+
 
 function Login() {
     const navigate = useNavigate();
 
     const [user, setUser] = useState({
-        userName: "",
+        userName: 0,
         password: "",
     });
 
@@ -52,35 +56,39 @@ function Login() {
         }
     };
 
+
     return (
         <>
-            <section className="full-screen-container">
-                <div className="clip"></div>
+            <section className="full-screen-container-login">
+                <img className="ec1" src={pic1} alt="Design 1" property="1" />
+                <img className="ec2" src={pic2} alt="Design 2" property="2" />
+                <img className="ec3" src={pic3} alt="Design 3" property="3" />
+
                 <div className="sign-in-container">
-                    <h1 className="sign-in-title">Sign In</h1>
-                    <form onSubmit={handleSubmit}>
+                    <h1 className="app-name">App Name</h1>
+                    <h2 className="login-title">Login</h2>
+                    <form onSubmit={handleSubmit} className="form">
                         <div className="input-container">
-                            <label htmlFor="email">Email</label>
+                            {/* <label htmlFor="email">Email</label> */}
                             <input
                                 type="number"
                                 name="userName"
-                                id="email"
+                                id="email" placeholder="Id"
                                 value={user.userName}
-                                onChange={handleChange}
-                            />
+                                onChange={handleChange} />
                         </div>
 
                         <div className="input-container">
-                            <label htmlFor="password">Password</label>
-                            <input
-                                type="password"
+                            {/* <label htmlFor="password">Password</label> */}
+                            <input type="password"
                                 name="password"
-                                id="password"
+                                id="password" placeholder="Password"
                                 value={user.password}
-                                onChange={handleChange}
-                            />
+                                onChange={handleChange} />
                         </div>
-                        <button type="submit" className="btn-sub">
+                        <button
+                            type="submit"
+                            className="btn-sub">
                             Log In
                         </button>
                     </form>
@@ -88,6 +96,6 @@ function Login() {
             </section>
         </>
     );
-}
+};
 
-export default Login;
+export default Login
