@@ -8,8 +8,8 @@ function Dashboard() {
             <div className="Flex">
                 <Sidebar />
                 <div className="Content-container">
-                    <AddNewStudentForm></AddNewStudentForm>
-                    <div className="container">Dashboard</div>
+                    <AddNewStudentForm />
+                    {/* <div className="container">Dashboard</div> */}
                 </div>
             </div>
         </>
