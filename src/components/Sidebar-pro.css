@@ -1,7 +1,8 @@
 .Sidebar {
    position: fixed;
    background-color: #2B3D53;
-
+   /* font-size: 5rem; */
+   color: #fff;
 }
 
 .MenuItem {

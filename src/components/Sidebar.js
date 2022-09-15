@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
-import { AiFillHome } from "react-icons/ai";
-import { FaUsers } from "react-icons/fa";
-import { RiLockPasswordFill } from "react-icons/ri";
+import { BiMenu, BiHome, BiGroup, BiLockAlt, BiAnalyse } from "react-icons/bi";
 import './Sidebar-pro.css'
+
+
+const styleIcon = {
+    fontSize: '1.5rem',
+    color: 'white',
+}
 
 const Sidebar = () => {
     const [isCollapse, setIsCollapse] = useState(true);
@@ -22,13 +26,14 @@ const Sidebar = () => {
                     onClick={() =>
                         setIsCollapse(!isCollapse)}
                     className="MenuItem"
+                    icon={<BiMenu style={styleIcon} />}
                 >
-                    Menu
                 </MenuItem>
                 <MenuItem
                     onClick={() =>
                         setIsCollapse(!isCollapse)}
-                    icon={<AiFillHome />}
+                    icon={<BiHome style={styleIcon} />}
+                // style={styleText }
                 >
                     Dashboard
                     <Link to="/admin/" />
@@ -36,7 +41,7 @@ const Sidebar = () => {
                 <MenuItem
                     onClick={() =>
                         setIsCollapse(!isCollapse)}
-                    icon={<FaUsers />}
+                    icon={<BiGroup style={styleIcon} />}
                 >
                     Manage Students
                     <Link to="/admin/StudentManagement" />
@@ -44,7 +49,7 @@ const Sidebar = () => {
                 <MenuItem
                     onClick={() =>
                         setIsCollapse(!isCollapse)}
-                    icon={<RiLockPasswordFill />}
+                    icon={<BiLockAlt style={styleIcon} />}
                 >
                     Manage Credentials
                     <Link to="/admin/Credentials" />
@@ -52,7 +57,7 @@ const Sidebar = () => {
                 <MenuItem
                     onClick={() =>
                         setIsCollapse(!isCollapse)}
-                    icon={<RiLockPasswordFill />}
+                    icon={<BiAnalyse style={styleIcon} />}
                 >
                     Result Analysis
                     <Link to="/admin/Analytics" />
