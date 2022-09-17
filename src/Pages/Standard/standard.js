@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import "../../App.css";
+import { toast } from "react-toastify";
 
 function Standard(props) {
+    const styleToast = {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeButton: false,
+    };
+
     const [standard] = useState(props.standard);
 
     const onLogOut = (event) => {
@@ -9,6 +17,7 @@ function Standard(props) {
         localStorage.removeItem("token");
         props.setAuth(false);
         props.setAdmin(false);
+        toast.success("Logout Successful!", styleToast);
     };
     return (
         <>

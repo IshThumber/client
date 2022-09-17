@@ -2,12 +2,22 @@ import React from "react";
 import "../../App.css";
 import AddNewStudentForm from "../StudentManagement/AddNewStudentForm";
 import Sidebar from "../../components/Sidebar.js";
+import { toast } from "react-toastify";
+
 function Dashboard(props) {
+    const styleToast = {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeButton: false,
+    };
+
     const onLogOut = (event) => {
         event.preventDefault();
         localStorage.removeItem("token");
         props.setAuth(false);
         props.setAdmin(false);
+        toast.success("Logout Successful!", styleToast);
     };
     return (
         <>

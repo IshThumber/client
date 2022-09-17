@@ -12,6 +12,9 @@ import Analytics from "./Pages/Analytics/Analytics.js";
 import StudentManagement from "./Pages/StudentManagement/StudentManagement.js";
 import Login from "./components/Login";
 import Standard from "./Pages/Standard/standard";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -32,6 +35,12 @@ function App() {
                 setIsAuthenticated(true);
                 setIsAdmin(parseRes.isAdmin);
                 setStandard(parseRes.standard);
+                toast.success("Login Successful!", {
+                    position: toast.POSITION.TOP_RIGHT,
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeButton: false,
+                });
             }
         } catch (err) {
             console.error(err.message);
@@ -56,6 +65,7 @@ function App() {
     return (
         <>
             <Router>
+                <ToastContainer />
                 <Routes>
                     <Route
                         path="*"
