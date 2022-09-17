@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import "./Login.css";
-import pic1 from "./ec1.svg"
-import pic2 from "./ec2.svg"
-import pic3 from "./ec3.svg"
+import pic1 from "./ec1.svg";
+import pic2 from "./ec2.svg";
+import pic3 from "./ec3.svg";
 
-
-function Login() {
-    const navigate = useNavigate();
+function Login(props) {
+    // const navigate = useNavigate();
 
     const [user, setUser] = useState({
         userName: 0,
@@ -27,7 +26,7 @@ function Login() {
         event.preventDefault();
         const { userName, password } = user;
         try {
-            const res = await fetch("http://localhost:5050/login", {
+            const res = await fetch("http://localhost:5050/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -38,24 +37,19 @@ function Login() {
                 }),
             });
 
-            if (res.status === 404 || !res) {
-                window.alert("Invalid Credentials");
-            } else if (res.status === 200) {
-                // Admin
-                window.alert("Login Successfull --> Admin");
-                navigate("/admin/");
-                window.location.reload();
-            } else {
-                // Teacher
-                window.alert("Login Successfull --> Teacher");
-                navigate("/userName/");
-                window.location.reload();
-            }
-        } catch (error) {
-            console.log(error);
+            const parseRes = await res.json();
+
+            localStorage.setItem("token", parseRes.token);
+
+            props.setAuth(true);
+
+            props.setAdmin(parseRes.isAdmin);
+
+            props.setStd(parseRes.standard);
+        } catch (err) {
+            console.error(err.message);
         }
     };
-
 
     return (
         <>
@@ -73,22 +67,25 @@ function Login() {
                             <input
                                 type="number"
                                 name="userName"
-                                id="email" placeholder="Id"
+                                id="email"
+                                placeholder="Id"
                                 value={user.userName}
-                                onChange={handleChange} />
+                                onChange={handleChange}
+                            />
                         </div>
 
                         <div className="input-container">
                             {/* <label htmlFor="password">Password</label> */}
-                            <input type="password"
+                            <input
+                                type="password"
                                 name="password"
-                                id="password" placeholder="Password"
+                                id="password"
+                                placeholder="Password"
                                 value={user.password}
-                                onChange={handleChange} />
+                                onChange={handleChange}
+                            />
                         </div>
-                        <button
-                            type="submit"
-                            className="btn-sub">
+                        <button type="submit" className="btn-sub">
                             Log In
                         </button>
                     </form>
@@ -96,6 +93,6 @@ function Login() {
             </section>
         </>
     );
-};
+}
 
-export default Login
+export default Login;

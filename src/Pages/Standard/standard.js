@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../App.css";
-import AddNewStudentForm from "../StudentManagement/AddNewStudentForm";
-import Sidebar from "../../components/Sidebar.js";
-function Dashboard(props) {
+
+function Standard(props) {
+    const [standard] = useState(props.standard);
+
     const onLogOut = (event) => {
         event.preventDefault();
         localStorage.removeItem("token");
@@ -12,16 +13,14 @@ function Dashboard(props) {
     return (
         <>
             <div className="Flex">
-                <Sidebar />
                 <div className="Content-container form">
                     <button onClick={onLogOut} className="btn-sub">
                         Log Out
                     </button>
-                    <AddNewStudentForm />
-                    {/* <div className="container">Dashboard</div> */}
+                    <div className="container">Standard {standard}</div>
                 </div>
             </div>
         </>
     );
 }
-export default Dashboard;
+export default Standard;
