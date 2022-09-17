@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import pic1 from "./ec1.svg";
 import pic2 from "./ec2.svg";
 import pic3 from "./ec3.svg";
 
 function Login(props) {
-    // const navigate = useNavigate();
-
     const [user, setUser] = useState({
         userName: 0,
         password: "",
@@ -37,15 +34,21 @@ function Login(props) {
                 }),
             });
 
-            const parseRes = await res.json();
+            if (res.status === 422) {
+                window.alert("Enter Username and Password!!!");
+            } else if (res.status === 401) {
+                window.alert("Enter valid credentials!!!");
+            } else {
+                const parseRes = await res.json();
 
-            localStorage.setItem("token", parseRes.token);
+                localStorage.setItem("token", parseRes.token);
 
-            props.setAuth(true);
+                props.setAuth(true);
 
-            props.setAdmin(parseRes.isAdmin);
+                props.setAdmin(parseRes.isAdmin);
 
-            props.setStd(parseRes.standard);
+                props.setStd(parseRes.standard);
+            }
         } catch (err) {
             console.error(err.message);
         }
