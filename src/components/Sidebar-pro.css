@@ -1,0 +1,18 @@
+.Sidebar {
+   position: fixed;
+   background-color: #2B3D53;
+   /* font-size: 5rem; */
+   color: #fff;
+}
+
+.MenuItem {
+   color: #fff;
+   font-size: 14px;
+   font-weight: 500;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   display: block;
+   text-decoration: none;
+   transition: all 0.3s ease;
+   background-color: #346F82
+}

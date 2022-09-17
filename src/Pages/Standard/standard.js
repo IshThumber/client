@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../App.css";
-import AddNewStudentForm from "../StudentManagement/AddNewStudentForm";
-import Sidebar from "../../components/Sidebar.js";
 import { toast } from "react-toastify";
 
-function Dashboard(props) {
+function Standard(props) {
     const styleToast = {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,
         hideProgressBar: true,
         closeButton: false,
     };
+
+    const [standard] = useState(props.standard);
 
     const onLogOut = (event) => {
         event.preventDefault();
@@ -22,16 +22,14 @@ function Dashboard(props) {
     return (
         <>
             <div className="Flex">
-                <Sidebar />
                 <div className="Content-container form">
                     <button onClick={onLogOut} className="btn-sub">
                         Log Out
                     </button>
-                    <AddNewStudentForm />
-                    {/* <div className="container">Dashboard</div> */}
+                    <div className="container">Standard {standard}</div>
                 </div>
             </div>
         </>
     );
 }
-export default Dashboard;
+export default Standard;

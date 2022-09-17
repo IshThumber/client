@@ -1,25 +1,40 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./Login.css";
-import pic1 from "./ec1.svg"
-import pic2 from "./ec2.svg"
-import pic3 from "./ec3.svg"
+import pic1 from "./ec1.svg";
+import pic2 from "./ec2.svg";
+import pic3 from "./ec3.svg";
+import { toast } from "react-toastify";
 
-
-function Login() {
-    const navigate = useNavigate();
+function Login(props) {
+    const styleToast = {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeButton: false,
+    };
 
     const [user, setUser] = useState({
-        userName: 0,
+        userName: "",
         password: "",
     });
 
     // Handle Input
     const handleChange = (event) => {
-        let name = event.target.name;
-        let value = event.target.value;
+        if (event.target.name === "userName") {
+            const re = /^[0-9\b]+$/;
 
-        setUser({ ...user, [name]: value });
+            if (event.target.value === "" || re.test(event.target.value)) {
+                let name = event.target.name;
+                let value = event.target.value;
+
+                setUser({ ...user, [name]: value });
+            }
+        } else {
+            let name = event.target.name;
+            let value = event.target.value;
+
+            setUser({ ...user, [name]: value });
+        }
     };
 
     // Handle Login
@@ -27,7 +42,7 @@ function Login() {
         event.preventDefault();
         const { userName, password } = user;
         try {
-            const res = await fetch("http://localhost:5050/login", {
+            const res = await fetch("http://localhost:5050/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -38,24 +53,25 @@ function Login() {
                 }),
             });
 
-            if (res.status === 404 || !res) {
-                window.alert("Invalid Credentials");
-            } else if (res.status === 200) {
-                // Admin
-                window.alert("Login Successfull --> Admin");
-                navigate("/admin/");
-                window.location.reload();
+            if (res.status === 422) {
+                toast.error("Enter Username and Password!!!", styleToast);
+            } else if (res.status === 401) {
+                toast.error("Enter Valid Credentials!!!", styleToast);
             } else {
-                // Teacher
-                window.alert("Login Successfull --> Teacher");
-                navigate("/userName/");
-                window.location.reload();
+                const parseRes = await res.json();
+
+                localStorage.setItem("token", parseRes.token);
+
+                props.setAuth(true);
+
+                props.setAdmin(parseRes.isAdmin);
+
+                props.setStd(parseRes.standard);
             }
-        } catch (error) {
-            console.log(error);
+        } catch (err) {
+            console.error(err.message);
         }
     };
-
 
     return (
         <>
@@ -71,24 +87,27 @@ function Login() {
                         <div className="input-container">
                             {/* <label htmlFor="email">Email</label> */}
                             <input
-                                type="number"
+                                type="text"
                                 name="userName"
-                                id="email" placeholder="Id"
+                                id="userName"
+                                placeholder="Id"
                                 value={user.userName}
-                                onChange={handleChange} />
+                                onChange={handleChange}
+                            />
                         </div>
 
                         <div className="input-container">
                             {/* <label htmlFor="password">Password</label> */}
-                            <input type="password"
+                            <input
+                                type="password"
                                 name="password"
-                                id="password" placeholder="Password"
+                                id="password"
+                                placeholder="Password"
                                 value={user.password}
-                                onChange={handleChange} />
+                                onChange={handleChange}
+                            />
                         </div>
-                        <button
-                            type="submit"
-                            className="btn-sub">
+                        <button type="submit" className="btn-sub">
                             Log In
                         </button>
                     </form>
@@ -96,6 +115,6 @@ function Login() {
             </section>
         </>
     );
-};
+}
 
-export default Login
+export default Login;
