@@ -3,20 +3,20 @@ import "./Login.css";
 import pic1 from "./ec1.svg";
 import pic2 from "./ec2.svg";
 import pic3 from "./ec3.svg";
-import { toast } from "react-toastify";
+import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai'
 
 function Login(props) {
-    const styleToast = {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeButton: false,
-    };
-
     const [user, setUser] = useState({
         userName: "",
         password: "",
     });
+    //for changing state of passwird toggle
+    const [state, setState] = useState(true);
+
+    //for toggle button
+    const toggleBtn = () => {
+        setState(prevState => !prevState);
+    }
 
     // Handle Input
     const handleChange = (event) => {
@@ -54,9 +54,9 @@ function Login(props) {
             });
 
             if (res.status === 422) {
-                toast.error("Enter Username and Password!!!", styleToast);
+                window.alert("Enter Username and Password!!!");
             } else if (res.status === 401) {
-                toast.error("Enter Valid Credentials!!!", styleToast);
+                window.alert("Enter valid credentials!!!");
             } else {
                 const parseRes = await res.json();
 
@@ -99,13 +99,19 @@ function Login(props) {
                         <div className="input-container">
                             {/* <label htmlFor="password">Password</label> */}
                             <input
-                                type="password"
+                                type={state ? "password" : "text"}
                                 name="password"
                                 id="password"
                                 placeholder="Password"
                                 value={user.password}
                                 onChange={handleChange}
                             />
+
+                            <i onClick={toggleBtn}>
+                                {
+                                    state ? <AiFillEye /> : <AiFillEyeInvisible />
+                                }
+                            </i>
                         </div>
                         <button type="submit" className="btn-sub">
                             Log In
