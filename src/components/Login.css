@@ -21,8 +21,8 @@ section {
 
 .ec1 {
   position: absolute;
-  left: 0;
-  top: 0;
+  left: -2.9375rem;
+  top: -13.5rem;
 }
 
 .ec2 {
@@ -36,15 +36,23 @@ section {
   right: 13rem;
 }
 
+
 .sign-in-container {
   background-color: #d6d6dc;
   max-width: 625px;
   width: 25%;
-  padding: 2.5rem 1.875rem;
+  padding: 0 1.875rem 2.5rem 1.875rem;
   border-radius: 1.25rem;
   z-index: 100;
 }
 
+.logo {
+  display: block;
+  margin-top: 0.7rem;
+  /* transform: translateX(28%); */
+  margin: auto;
+  width: 15rem;
+}
 
 .app-name {
   margin: 0;

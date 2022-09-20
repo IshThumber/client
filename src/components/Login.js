@@ -3,6 +3,7 @@ import "./Login.css";
 import pic1 from "./ec1.svg";
 import pic2 from "./ec2.svg";
 import pic3 from "./ec3.svg";
+import logo from "./logo.png";
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai'
 
 function Login(props) {
@@ -81,7 +82,7 @@ function Login(props) {
                 <img className="ec3" src={pic3} alt="Design 3" property="3" />
 
                 <div className="sign-in-container">
-                    <h1 className="app-name">App Name</h1>
+                    <img className="logo" src={logo} alt="logo" property="4" />
                     <h2 className="login-title">Login</h2>
                     <form onSubmit={handleSubmit} className="form">
                         <div className="input-container">
