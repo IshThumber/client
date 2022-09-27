@@ -1,7 +1,6 @@
 import React from "react";
 import "../../App.css";
 import Sidebar from "../../components/Sidebar.js";
-import CredentialsTable from "./CredentialsTable.js";
 const CredentialsManagement = () => {
     return (
         <>

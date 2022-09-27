@@ -17,11 +17,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-
     const [isAdmin, setIsAdmin] = useState(true);
-
     const [standard, setStandard] = useState("");
-
     async function isAuth() {
         try {
             const res = await fetch("http://localhost:5050/auth/is-verify", {
