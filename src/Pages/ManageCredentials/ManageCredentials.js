@@ -1,7 +1,6 @@
 import React from "react";
-import "../../App.css";
-import Sidebar from "../../components/Sidebar.js";
-const CredentialsManagement = () => {
+import Sidebar from "../../components/Sidebar/Sidebar";
+const ManageCredentials = () => {
     return (
         <>
             <div className="Flex">
@@ -14,4 +13,4 @@ const CredentialsManagement = () => {
     );
 };
 
-export default CredentialsManagement;
+export default ManageCredentials;

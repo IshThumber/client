@@ -1,8 +1,8 @@
 import React from "react";
-import "./Analytics.css";
+import "./ManageStudents.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
 
-const Analytics = () => {
+const ManageStudents = () => {
   return (
     <>
       <div className="Flex">
@@ -11,4 +11,4 @@ const Analytics = () => {
     </>
   );
 };
-export default Analytics;
+export default ManageStudents;
