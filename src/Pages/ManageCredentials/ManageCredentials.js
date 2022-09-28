@@ -5,9 +5,7 @@ const ManageCredentials = () => {
         <>
             <div className="Flex">
                 <Sidebar />
-                <div className="Content-container">
-                    <div className="container">CredentialsManagement</div>
-                </div>
+                
             </div>
         </>
     );
