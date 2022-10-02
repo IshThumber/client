@@ -5,8 +5,9 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 const Analytics = () => {
   return (
     <>
-      <div className="Flex">
+      <div>
         <Sidebar />
+        <div className="Content-container"></div>
       </div>
     </>
   );

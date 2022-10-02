@@ -1,5 +1,11 @@
 .Content-container {
   padding-left: 20px;
-  background-color: red;
   margin-left: 270px;
+  margin-top: 30px;
+}
+
+
+.drop-down-standard-manageStudent {
+  margin-bottom: 40px;
+  border: 1px solid #ccc;
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../../App/App.css";
 import { toast } from "react-toastify";
+import ManageStudentTable from "../ManageStudents/ManageStudentTable";
 
 function Standard(props) {
   const styleToast = {
@@ -27,6 +28,7 @@ function Standard(props) {
             Log Out
           </button>
           <div className="container">Standard {standard}</div>
+        
         </div>
       </div>
     </>
