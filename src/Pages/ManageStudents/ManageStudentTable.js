@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
 import { Box } from "@mui/material";
 import data from "./data.json";
-
+import { FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 //create list for dynamic standard
 const standardsList = [
   { key: 1, value: "1", display: 1 },
@@ -10,6 +11,20 @@ const standardsList = [
   { key: 3, value: "3", display: 3 },
   { key: 4, value: "4", display: 4 },
 ];
+
+//here id is the key value of id which is shown in the json
+//handler for the edit in student details
+const handleEditClick = (id) => () => {
+  alert(`Edit ${id}`);
+  //logic here.............//
+};
+
+//handler for the delete in student details
+const handleDeleteClick = (id) => () => {
+  alert(`Delete ${id}`);
+  //logic here.............//
+
+};
 
 //represent columns of table
 const columns = [
@@ -46,6 +61,35 @@ const columns = [
       `${params.row.lastName || ""} ${params.row.firstName || ""} ${
         params.row.FatherName || ""
       } `,
+  },
+  {
+    field: "actions",
+    align: "center",
+    headerClassName: "super-app-theme--header",
+    headerAlign: "center",
+    type: "actions",
+    headerName: "Actions",
+    width: 100,
+    cellClassName: "actions",
+    getActions: ({ id }) => {
+      // const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
+
+      return [
+        <GridActionsCellItem
+          icon={<FaEdit />}
+          label="Edit"
+          className="textPrimary"
+          onClick={handleEditClick(id)}
+          color="inherit"
+        />,
+        <GridActionsCellItem
+          icon={<MdDelete />}
+          label="Delete"
+          onClick={handleDeleteClick(id)}
+          color="inherit"
+        />,
+      ];
+    },
   },
 ];
 

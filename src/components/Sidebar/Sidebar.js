@@ -37,6 +37,7 @@ const Sidebar = () => {
           <Link to="/admin/StudentManagement" />
         </MenuItem>
         <MenuItem
+      
           onClick={() => setIsCollapse(!isCollapse)}
           icon={<BiLockAlt style={styleIcon} />}
         >
