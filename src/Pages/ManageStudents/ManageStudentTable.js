@@ -4,6 +4,8 @@ import { Box } from "@mui/material";
 import data from "./data.json";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import StudentEntry from "../StudentEntry/StudentEntry";
+import { textAlign } from "@mui/system";
 //create list for dynamic standard
 const standardsList = [
   { key: 1, value: "1", display: 1 },
@@ -23,7 +25,6 @@ const handleEditClick = (id) => () => {
 const handleDeleteClick = (id) => () => {
   alert(`Delete ${id}`);
   //logic here.............//
-
 };
 
 //represent columns of table
@@ -129,6 +130,9 @@ export default function ManageStudentTable(props) {
 
         <div>
           Total Number of student in standard {standard} : {row.length}
+        </div>
+        <div style={{textAlign:"end",marginRight:"250px"}}>
+          <StudentEntry />
         </div>
       </div>
 
