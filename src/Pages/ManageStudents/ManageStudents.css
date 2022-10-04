@@ -1,3 +1,11 @@
+.Header {
+  background-color: #2b3d53;
+  height: 72px;
+  width: 100%;
+  margin-top: 10px;
+  
+}
+
 .Content-container {
   padding-left: 20px;
   margin-left: 270px;
@@ -9,9 +17,3 @@
   border: 1px solid #ccc;
 }
 
-.Header {
-  background-color: #2b3d53;
-  height: 72px;
-  width: 100%;
-  margin-top: 10px;
-}

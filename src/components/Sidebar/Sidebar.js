@@ -21,7 +21,7 @@ const Sidebar = () => {
           className="MenuItem"
           icon={<BiMenu style={styleIcon} />}
         ></MenuItem>
-        <MenuItem
+        <MenuItem className="tech"
           onClick={() => setIsCollapse(!isCollapse)}
           icon={<BiHome style={styleIcon} />}
           // style={styleText }

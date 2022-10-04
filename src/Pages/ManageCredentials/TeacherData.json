@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "standard": "1A",
+        "userName": "Pratik",
+        "password": "141",
+        "teacherName": "Pratik Suthar"
+    },
+    {
+        "id": 2,
+        "standard": "2A",
+        "userName": "Dhruvin",
+        "password": "143",
+        "teacherName": "Dhruvin Tandel"
+    },
+    {
+        "id": 3,
+        "standard": "3",
+        "userName": "Ish",
+        "password": "148",
+        "teacherName": "Ish Thumber"
+    },
+    {
+        "id": 4,
+        "standard": "4",
+        "userName": "Ketan",
+        "password": "149",
+        "teacherName": "Ketan Tiwari"
+    }
+]

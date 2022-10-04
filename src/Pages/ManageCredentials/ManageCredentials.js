@@ -1,12 +1,14 @@
 import React from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import StudentEntry from "../StudentEntry/StudentEntry";
+import ManageCredentialsTable from "./ManageCredentialsTable";
 const ManageCredentials = () => {
   return (
     <>
       <div>
         <Sidebar />
-        <div className="Content-container"></div>
+        <div className="Content-container">
+          <ManageCredentialsTable />
+        </div>
       </div>
     </>
   );

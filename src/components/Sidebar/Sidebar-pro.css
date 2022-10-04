@@ -20,7 +20,12 @@
   background-color: #346f82;
 }
 
+.pro-menu-item:hover {
+  border-left: 5px solid #346f82;
+}
 
-.pro-sidebar-layout{
+
+.pro-sidebar-layout {
   background-color: #1a222c;
 }
+
