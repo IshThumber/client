@@ -10,6 +10,8 @@ export const getCasteCollection = () => [
   { id: "4", title: "SC" },
 ];
 
+
+
 // export function insertEmployee(data) {
 //   let employees = getAllEmployees();
 //   data["id"] = generateEmployeeId();

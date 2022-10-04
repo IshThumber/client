@@ -1,0 +1,21 @@
+.standard-header {
+  height: 40px;
+  text-align: end;
+  /* width: max-content; */
+  width: 100%;
+  background-color: aqua;
+}
+.standard-content-container {
+  margin-left: 40px;
+  
+}
+
+.standard-logout-button {
+  padding: 10px;
+  width: 150px;
+  margin-right: 100px;
+  background-color: #41a7be;
+  border: 0.1px solid black;
+  color: white;
+  cursor: pointer;
+}

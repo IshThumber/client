@@ -5,7 +5,7 @@ import data from "./data.json";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import StudentEntry from "../StudentEntry/StudentEntry";
-import { textAlign } from "@mui/system";
+
 //create list for dynamic standard
 const standardsList = [
   { key: 1, value: "1", display: 1 },

@@ -40,7 +40,7 @@ export default function StudentEntryForm() {
     useForm(initialFValues);
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     if (validate()) {
       window.alert("Successfully submitted");
       // employeeService.insertEmployee(values);
