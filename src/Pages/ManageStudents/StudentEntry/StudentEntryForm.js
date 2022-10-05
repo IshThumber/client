@@ -1,8 +1,8 @@
 import { Grid, InputAdornment } from "@mui/material";
 import React from "react";
-import { useForm, Form } from "../../components/useForm";
-import Controls from "../../components/controls/Controls";
-import * as employeeService from "../../SelectItems/SelectItems";
+import { useForm, Form } from "../../../components/useForm";
+import Controls from "../../../components/controls/Controls";
+import * as employeeService from "../../../SelectItems/SelectItems";
 
 const initialFValues = {
   id: 0,

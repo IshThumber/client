@@ -2,7 +2,7 @@ import React from "react";
 import "./ManageStudents.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import ManageStudentTable from "./ManageStudentTable";
-import StudentEntry from "../StudentEntry/StudentEntry";
+import StudentEntry from "./StudentEntry/StudentEntry";
 
 const ManageStudents = () => {
   return (

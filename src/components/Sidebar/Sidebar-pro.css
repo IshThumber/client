@@ -22,10 +22,9 @@
 
 .pro-menu-item:hover {
   border-left: 5px solid #346f82;
+  box-sizing: border-box;
 }
-
 
 .pro-sidebar-layout {
   background-color: #1a222c;
 }
-

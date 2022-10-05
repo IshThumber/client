@@ -1,6 +1,7 @@
 * {
   padding: 0%;
   margin: 0;
+  box-sizing: border-box;
 }
 
 /* form component */
@@ -9,12 +10,11 @@
   width: 90%;
   text-align: center;
 }
-.MuiDialogTitle-root{
+.MuiDialogTitle-root {
   background-color: #106375;
   color: white;
- 
 }
 
-.MuiDialogContent-root{
+.MuiDialogContent-root {
   text-align: center;
 }

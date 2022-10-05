@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 import data from "./data.json";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-import StudentEntry from "../StudentEntry/StudentEntry";
+import StudentEntry from "./StudentEntry/StudentEntry";
 
 //create list for dynamic standard
 const standardsList = [

@@ -6,7 +6,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import StudentEntryForm from "./StudentEntryForm";
-import Controls from "../../components/controls/Controls";
+import Controls from "../../../components/controls/Controls";
 
 
 export default function StudentEntry() {
