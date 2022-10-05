@@ -9,6 +9,8 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
+import DashboardStatusTable from "./DashboardStatusTable";
+
 function Dashboard(props) {
   //Dialog Start
   const [open, setOpen] = React.useState(false);
@@ -44,7 +46,9 @@ function Dashboard(props) {
           <button onClick={handleClickOpen} className="btn-sub">
             Log Out
           </button>
-          {/* <div className="container">Dashboard</div> */}
+          <div>
+            <DashboardStatusTable />
+          </div>
         </div>
 
         <Dialog
@@ -71,3 +75,7 @@ function Dashboard(props) {
   );
 }
 export default Dashboard;
+
+
+
+

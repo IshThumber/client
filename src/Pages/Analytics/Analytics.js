@@ -42,8 +42,6 @@ const Analytics = () => {
             </select>
           </div>
         </div>
-
-        
       </div>
     </>
   );
