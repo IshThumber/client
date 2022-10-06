@@ -62,7 +62,8 @@ function Login(props) {
             } else {
                 const parseRes = await res.json();
 
-                localStorage.setItem("token", parseRes.token);
+                sessionStorage.setItem("token", parseRes.token);
+                sessionStorage.setItem("schoolId", parseRes.schoolId);
 
                 props.setAuth(true);
 

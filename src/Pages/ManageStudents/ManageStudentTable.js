@@ -6,6 +6,7 @@ import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import StudentEntry from "./StudentEntry/StudentEntry";
 
+let x;
 //create list for dynamic standard
 const standardsList = [
     { key: 1, value: "1", display: 1 },
@@ -18,6 +19,13 @@ const standardsList = [
 //handler for the edit in student details
 const handleEditClick = (id) => () => {
     alert(`Edit ${id}`);
+    let y;
+    x.foreach((i) => {
+        if (i.id == id) {
+            y = i;
+        }
+    });
+    console.log(i);
     //logic here.............//
 };
 
@@ -116,7 +124,9 @@ export default function ManageStudentTable(props) {
                     let year = 2022;
                     let std = standard.toString();
                     let ob = await fetch(
-                        `http://localhost:5050/showStudents/${schoolName}/${year}/STD ${std}`
+                        `http://localhost:5050/showStudents/${sessionStorage.getItem(
+                            "schoolId"
+                        )}/${year}/STD ${std}`
                     )
                         .then((response) => {
                             if (response.ok) {
@@ -124,8 +134,10 @@ export default function ManageStudentTable(props) {
                             }
                         })
                         .catch((err) => console.error(err));
-                    if (!ob.message) setRows(JSON.parse(ob));
-                    else {
+                    if (!ob.message) {
+                        x = JSON.parse(ob);
+                        setRows(JSON.parse(ob));
+                    } else {
                         setRows([]);
                     }
                 }

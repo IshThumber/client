@@ -3,119 +3,123 @@ import "./standard.css";
 import { toast } from "react-toastify";
 
 const examList = [
-  { key: 1, value: "exam 1", display: "exam1" },
-  { key: 2, value: "exam 2", display: "exam2" },
+    { key: 1, value: "exam 1", display: "exam1" },
+    { key: 2, value: "exam 2", display: "exam2" },
 ];
 
 const subjectList = [
-  {
-    key: 1,
-    value: "science",
-    display: "science",
-  },
-  {
-    key: 2,
-    value: "maths",
-    display: "maths",
-  },
+    {
+        key: 1,
+        value: "science",
+        display: "science",
+    },
+    {
+        key: 2,
+        value: "maths",
+        display: "maths",
+    },
 ];
 
 function Standard(props) {
-  //hook for handle exam...
-  const [exam, setExam] = useState("0");
-  const [subject, setSubject] = useState("0");
+    //hook for handle exam...
+    const [exam, setExam] = useState("0");
+    const [subject, setSubject] = useState("0");
 
-  //handler for exam
-  function handleexam() {
-    var a = document.getElementById("exam");
-    setExam(a.value);
-  }
-
-  function handlesubject() {
-    var s = document.getElementById("subject");
-    // console.log(s.value);
-    setSubject(s.value);
-  }
-
-  useEffect(() => {
-    // let ob = data.filter((d) => d.standard == standard);
-    // setRows(ob);
-    console.log(exam);
-    setSubject(0);
-    if (exam === "0" || exam === "None") {
-      setSubject("0");
+    //handler for exam
+    function handleexam() {
+        var a = document.getElementById("exam");
+        setExam(a.value);
     }
-  }, [exam]);
 
-  useEffect(() => {
-    console.log(subject);
-    if (exam === "0" || exam === "None") {
-      setSubject("0");
-      alert("Please select a exam first");
+    function handlesubject() {
+        var s = document.getElementById("subject");
+        // console.log(s.value);
+        setSubject(s.value);
     }
-  }, [subject]);
-  // console.log(exam);
-  const styleToast = {
-    position: toast.POSITION.TOP_RIGHT,
-    autoClose: 2000,
-    hideProgressBar: true,
-    closeButton: false,
-  };
 
-  const [standard] = useState(props.standard);
+    useEffect(() => {
+        // let ob = data.filter((d) => d.standard == standard);
+        // setRows(ob);
+        console.log(exam);
+        setSubject(0);
+        if (exam === "0" || exam === "None") {
+            setSubject("0");
+        }
+    }, [exam]);
 
-  const onLogOut = (event) => {
-    event.preventDefault();
-    localStorage.removeItem("token");
-    props.setAuth(false);
-    props.setAdmin(false);
-    toast.success("Logout Successful!", styleToast);
-  };
-  return (
-    <>
-      {/* ..........header-part......... */}
-      <div className="standard-header">
-        <button className="standard-logout-button" onClick={onLogOut}>
-          <b>LOG OUT</b>
-        </button>
-      </div>
+    useEffect(() => {
+        console.log(subject);
+        if (exam === "0" || exam === "None") {
+            setSubject("0");
+            alert("Please select a exam first");
+        }
+    }, [subject]);
+    // console.log(exam);
+    const styleToast = {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeButton: false,
+    };
 
-      {/* ...........main-container........... */}
+    const [standard] = useState(props.standard);
 
-      <div className="standard-content-container">
-        <div>Class : {standard}</div>
-        {/* .......drop down for exam selection........*/}
-        <div className="drop-down-exam-standard">
-          <label>Choose a exam : </label>
+    const onLogOut = (event) => {
+        event.preventDefault();
+        sessionStorage.removeItem("token");
+        props.setAuth(false);
+        props.setAdmin(false);
+        toast.success("Logout Successful!", styleToast);
+    };
+    return (
+        <>
+            {/* ..........header-part......... */}
+            <div className="standard-header">
+                <button className="standard-logout-button" onClick={onLogOut}>
+                    <b>LOG OUT</b>
+                </button>
+            </div>
 
-          <select onChange={handleexam} name="exam" id="exam">
-            <option value="None">None</option>
+            {/* ...........main-container........... */}
 
-            {examList.map((v) => (
-              <option key={v.key} value={v.value}>
-                {v.display}
-              </option>
-            ))}
-          </select>
-        </div>
+            <div className="standard-content-container">
+                <div>Class : {standard}</div>
+                {/* .......drop down for exam selection........*/}
+                <div className="drop-down-exam-standard">
+                    <label>Choose a exam : </label>
 
-        {/* .......drop down for subject selection........*/}
+                    <select onChange={handleexam} name="exam" id="exam">
+                        <option value="None">None</option>
 
-        <div className="drop-down-subject-standard">
-          <label>Choose a subject : </label>
+                        {examList.map((v) => (
+                            <option key={v.key} value={v.value}>
+                                {v.display}
+                            </option>
+                        ))}
+                    </select>
+                </div>
 
-          <select onChange={handlesubject} name="subject" id="subject">
-            <option value="None">None</option>
+                {/* .......drop down for subject selection........*/}
 
-            {subjectList.map((v) => (
-              <option key={v.key} value={v.value}>
-                {v.display}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-    </>
-  );
+                <div className="drop-down-subject-standard">
+                    <label>Choose a subject : </label>
+
+                    <select
+                        onChange={handlesubject}
+                        name="subject"
+                        id="subject"
+                    >
+                        <option value="None">None</option>
+
+                        {subjectList.map((v) => (
+                            <option key={v.key} value={v.value}>
+                                {v.display}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            </div>
+        </>
+    );
 }
 export default Standard;
