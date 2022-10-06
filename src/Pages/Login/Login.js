@@ -4,7 +4,8 @@ import pic1 from "./ec1.svg";
 import pic2 from "./ec2.svg";
 import pic3 from "./ec3.svg";
 import logo from "./logo.png";
-import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai'
+import { ToastContainer, toast } from "react-toastify";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
 function Login(props) {
     const [user, setUser] = useState({
@@ -16,8 +17,8 @@ function Login(props) {
 
     //for toggle button
     const toggleBtn = () => {
-        setState(prevState => !prevState);
-    }
+        setState((prevState) => !prevState);
+    };
 
     // Handle Input
     const handleChange = (event) => {
@@ -68,6 +69,13 @@ function Login(props) {
                 props.setAdmin(parseRes.isAdmin);
 
                 props.setStd(parseRes.standard);
+
+                toast.success("Login Successful!", {
+                    position: toast.POSITION.TOP_RIGHT,
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeButton: false,
+                });
             }
         } catch (err) {
             console.error(err.message);
@@ -109,9 +117,7 @@ function Login(props) {
                             />
 
                             <i onClick={toggleBtn}>
-                                {
-                                    state ? <AiFillEye /> : <AiFillEyeInvisible />
-                                }
+                                {state ? <AiFillEye /> : <AiFillEyeInvisible />}
                             </i>
                         </div>
                         <button type="submit" className="btn-sub">
