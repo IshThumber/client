@@ -20,7 +20,7 @@
   background-color: #346f82;
 }
 
-.pro-menu-item:hover {
+.pro-menu-item:not(:first-child):hover {
   border-left: 5px solid #346f82;
   box-sizing: border-box;
 }

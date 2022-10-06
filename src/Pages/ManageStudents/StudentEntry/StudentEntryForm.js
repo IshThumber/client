@@ -20,16 +20,147 @@ const initialFValues = {
 export default function StudentEntryForm() {
   const validate = () => {
     let temp = {};
-    temp.studentName = values.studentName ? "" : "This Filed is Required";
-    temp.surName = values.surName ? "" : "This Filed is Required";
-    temp.fatherName = values.fatherName ? "" : "This Filed is Required";
-    temp.motherName = values.motherName ? "" : "This Filed is Required";
-    temp.grNumber = values.grNumber ? "" : "This Filed is Required";
-    temp.uidNumber = values.uidNumber ? "" : "This Filed is Required";
-    temp.caste = values.caste ? "" : "This Filed is Required";
-    temp.birthDate = values.birthDate ? "" : "This Filed is Required";
-    temp.mobileNumber =
-      values.mobileNumber.length > 9 ? "" : "This Filed is Required";
+    // temp.studentName = !/[^a-z]/i.test(values.studentName) ? "This Filed is Required" : "Only Aplphabets are allowed";
+
+    //for student name
+    if (!values.studentName) {
+      temp.studentName = "*Required Field";
+    }
+    else {
+      if (!/[^a-zA-Z]/i.test(values.studentName)) {
+        temp.studentName = '';
+      }
+      else {
+        temp.studentName = 'Only Alaphabets are allowed';
+      }
+    }
+
+    //for surname
+    if (!values.surName) {
+      temp.surName = "*Required Field";
+    }
+    else {
+      if (!/[^a-zA-Z]/i.test(values.surName)) {
+        temp.surName = '';
+      }
+      else {
+        temp.surName = 'Only Alaphabets are allowed';
+      }
+    }
+
+
+    //for father's name
+    if (!values.fatherName) {
+      temp.fatherName = "*Required Field";
+    }
+    else {
+      if (!/[^a-zA-Z]/i.test(values.fatherName)) {
+        temp.fatherName = ''
+      }
+      else {
+        temp.fatherName = 'Only Alaphabets are allowed';
+      }
+    }
+
+
+    // for mother's name
+    if (!values.motherName) {
+      temp.motherName = "*Required Field";
+    }
+    else {
+      if (!/[^a-zA-Z]/i.test(values.motherName)) {
+        temp.motherName = '';
+      }
+      else {
+        temp.motherName = 'Only Alaphabets are allowed';
+      }
+    }
+
+    // grnumber
+    if (!values.grNumber) {
+      temp.grNumber = '*Required Field';
+    }
+    else {
+      temp.grNumber = '';
+    }
+
+    // uid
+    if (!values.uidNumber) {
+      temp.uidNumber = '*Required Field';
+    }
+    else {
+      if ((values.uidNumber.length) < 18) {
+        if ((18 - (values.uidNumber.length)) == 1) {
+          temp.uidNumber = `${18 - (values.uidNumber.length)} digit remain to enter`;
+        }
+        else {
+          temp.uidNumber = `${18 - (values.uidNumber.length)} digits remain to enter`;
+        }
+      }
+
+      else if ((values.uidNumber.length) > 18) {
+        if ((values.uidNumber.length - 18) == 1) {
+          temp.uidNumber = `${(values.uidNumber.length) - 18} digit is remain to delete`;
+        }
+        else {
+          temp.uidNumber = `${(values.uidNumber.length) - 18} digits are remain to delete`;
+        }
+      }
+      else {
+        temp.uidNumber = '';
+      }
+    }
+
+
+    //caste
+    if (!values.caste) {
+      temp.caste = '*Required Field'
+    }
+    else {
+      temp.caste = ''
+    }
+
+    //birthdate
+    if (!values.birthDate) {
+      temp.birthDate = '*Required Field'
+    }
+    else {
+      temp.birthDate = ''
+    }
+
+
+    //mobile number
+
+    if (!values.mobileNumber) {
+      temp.mobileNumber = '*Required Field'
+    }
+    else {
+      if (!/[^0-9]/i.test(values.mobileNumber)) {
+        if (values.mobileNumber.length !== 10) {
+          temp.mobileNumber = 'Length must be of 10 numbers'
+        }
+        else {
+          temp.mobileNumber = ''
+        }
+      }
+      else {
+        temp.mobileNumber = 'Must be Number'
+      }
+    }
+
+    //birth date
+    if (!values.birthDate) {
+      temp.birthDate = '*Required Field'
+    }
+    else {
+      temp.birthDate = ''
+    }
+
+    // temp.grNumber = values.grNumber ? "" : "This Filed is Required";
+    // temp.uidNumber = values.uidNumber ? "" : "This Filed is Required";
+    // temp.caste = values.caste ? "" : "This Filed is Required";
+    // temp.birthDate = values.birthDate ? "" : "This Filed is Required";
+
     setErrors({
       ...temp,
     });
@@ -70,6 +201,7 @@ export default function StudentEntryForm() {
           />
 
           <Controls.Input
+            type="number"
             name="grNumber"
             label="G R Number"
             value={values.grNumber}
@@ -109,7 +241,7 @@ export default function StudentEntryForm() {
             error={errors.motherName}
           />
           <Controls.Input
-            type="number"
+            type='number'
             name="uidNumber"
             label="UID Number"
             value={values.uidNumber}
