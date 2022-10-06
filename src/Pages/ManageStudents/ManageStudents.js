@@ -10,9 +10,7 @@ const ManageStudents = () => {
       <div>
         <Sidebar />
         <div className="Header"></div>
-
         <div className="Content-container">
-
           <ManageStudentTable />
         </div>
       </div>

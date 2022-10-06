@@ -17,7 +17,7 @@ const initialFValues = {
   caste: "",
 };
 
-export default function StudentEntryForm() {
+export default function StudentEntryForm(props) {
   const validate = () => {
     let temp = {};
     temp.studentName = values.studentName ? "" : "This Filed is Required";
