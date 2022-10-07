@@ -17,6 +17,13 @@ const initialFValues = {
   caste: "",
 };
 
+let today = new Date();
+const dd = today.getDate();
+const mm = today.getMonth() + 1;
+const yyyy = today.getFullYear();
+
+today = dd + '-' + mm + '-' + yyyy;
+
 export default function StudentEntryForm(props) {
   const validate = () => {
     let temp = {};
@@ -90,7 +97,7 @@ export default function StudentEntryForm(props) {
     }
     else {
       if ((values.uidNumber.length) < 18) {
-        if ((18 - (values.uidNumber.length)) == 1) {
+        if ((18 - (values.uidNumber.length)) === 1) {
           temp.uidNumber = `${18 - (values.uidNumber.length)} digit remain to enter`;
         }
         else {
@@ -99,7 +106,7 @@ export default function StudentEntryForm(props) {
       }
 
       else if ((values.uidNumber.length) > 18) {
-        if ((values.uidNumber.length - 18) == 1) {
+        if ((values.uidNumber.length - 18) === 1) {
           temp.uidNumber = `${(values.uidNumber.length) - 18} digit is remain to delete`;
         }
         else {
@@ -114,47 +121,75 @@ export default function StudentEntryForm(props) {
 
     //caste
     if (!values.caste) {
-      temp.caste = '*Required Field'
+      temp.caste = '*Required Field';
     }
     else {
-      temp.caste = ''
+      temp.caste = '';
     }
-
-    //birthdate
-    if (!values.birthDate) {
-      temp.birthDate = '*Required Field'
-    }
-    else {
-      temp.birthDate = ''
-    }
-
 
     //mobile number
 
     if (!values.mobileNumber) {
-      temp.mobileNumber = '*Required Field'
+      temp.mobileNumber = '*Required Field';
     }
     else {
-      if (!/[^0-9]/i.test(values.mobileNumber)) {
-        if (values.mobileNumber.length !== 10) {
-          temp.mobileNumber = 'Length must be of 10 numbers'
+      if (values.mobileNumber.length < 10) {
+        if ((10 - (values.mobileNumber.length)) === 1) {
+          temp.mobileNumber = `${10 - (values.mobileNumber.length)} digit remain to enter`;
         }
         else {
-          temp.mobileNumber = ''
+          temp.mobileNumber = `${10 - (values.mobileNumber.length)} digits remain to enter`;
+        }
+      }
+      else if ((values.mobileNumber.length) > 10) {
+        if ((values.mobileNumber.length - 10) === 1) {
+          temp.mobileNumber = `${(values.mobileNumber.length) - 10} digit is remain to delete`;
+        }
+        else {
+          temp.mobileNumber = `${(values.mobileNumber.length) - 10} digits are remain to delete`;
         }
       }
       else {
-        temp.mobileNumber = 'Must be Number'
+        temp.mobileNumber = '';
       }
     }
 
+    let bday = values.birthDate.split('-');
+    let year = bday[0];
+    let month = bday[1];
+    let day = bday[2];
+
+
+    console.log(today);
     //birth date
     if (!values.birthDate) {
-      temp.birthDate = '*Required Field'
+      temp.birthDate = '*Required Field';
     }
     else {
-      temp.birthDate = ''
+      // if (year > yyyy) {
+      //   temp.birthDate = `year cannot be greater than ${yyyy}`;
+      // }
+      // else {
+      //   if (month > mm) {
+      //     temp.birthDate = `moth cannot be grater than ${mm}`;
+      //   }
+      //   else {
+      //     if (day > dd) {
+      //       temp.birthDate = `selected date cannot be grater than ${dd}`;
+      //     }
+      //     else {
+      //       temp.birthDate = '';
+      //     }
+      //   }
+      // }
+      if (year >= yyyy && month >= mm && day >= dd) {
+        temp.birthDate = `date cannot be greater than ${today}`;
+      }
+      else {
+        temp.birthDate = '';
+      }
     }
+
 
     // temp.grNumber = values.grNumber ? "" : "This Filed is Required";
     // temp.uidNumber = values.uidNumber ? "" : "This Filed is Required";
@@ -210,6 +245,7 @@ export default function StudentEntryForm(props) {
           />
 
           <Controls.Input
+            type='number'
             name="mobileNumber"
             label="Mobile Number"
             value={values.mobileNumber}
