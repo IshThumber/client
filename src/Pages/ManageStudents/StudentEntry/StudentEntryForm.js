@@ -27,174 +27,125 @@ today = dd + '-' + mm + '-' + yyyy;
 export default function StudentEntryForm(props) {
   const validate = () => {
     let temp = {};
-    // temp.studentName = !/[^a-z]/i.test(values.studentName) ? "This Filed is Required" : "Only Aplphabets are allowed";
 
-    //for student name
+    //validatoin for student's name
     if (!values.studentName) {
       temp.studentName = "*Required Field";
-    }
-    else {
+    } else {
       if (!/[^a-zA-Z]/i.test(values.studentName)) {
-        temp.studentName = '';
-      }
-      else {
-        temp.studentName = 'Only Alaphabets are allowed';
+        temp.studentName = "";
+      } else {
+        temp.studentName = "Only Alaphabets are allowed";
       }
     }
 
-    //for surname
+    //validation for surname
     if (!values.surName) {
       temp.surName = "*Required Field";
-    }
-    else {
+    } else {
       if (!/[^a-zA-Z]/i.test(values.surName)) {
-        temp.surName = '';
-      }
-      else {
-        temp.surName = 'Only Alaphabets are allowed';
+        temp.surName = "";
+      } else {
+        temp.surName = "Only Alaphabets are allowed";
       }
     }
 
-
-    //for father's name
+    //valdiatoin for father's name
     if (!values.fatherName) {
       temp.fatherName = "*Required Field";
-    }
-    else {
+    } else {
       if (!/[^a-zA-Z]/i.test(values.fatherName)) {
-        temp.fatherName = ''
-      }
-      else {
-        temp.fatherName = 'Only Alaphabets are allowed';
+        temp.fatherName = "";
+      } else {
+        temp.fatherName = "Only Alaphabets are allowed";
       }
     }
 
-
-    // for mother's name
+    //validation for mother's name
     if (!values.motherName) {
       temp.motherName = "*Required Field";
-    }
-    else {
+    } else {
       if (!/[^a-zA-Z]/i.test(values.motherName)) {
-        temp.motherName = '';
-      }
-      else {
-        temp.motherName = 'Only Alaphabets are allowed';
+        temp.motherName = "";
+      } else {
+        temp.motherName = "Only Alaphabets are allowed";
       }
     }
 
-    // grnumber
+    // validatoin for GR number
     if (!values.grNumber) {
-      temp.grNumber = '*Required Field';
-    }
-    else {
-      temp.grNumber = '';
+      temp.grNumber = "*Required Field";
+    } else {
+      temp.grNumber = "";
     }
 
-    // uid
+    // validation for UDISE number
     if (!values.uidNumber) {
-      temp.uidNumber = '*Required Field';
-    }
-    else {
-      if ((values.uidNumber.length) < 18) {
-        if ((18 - (values.uidNumber.length)) === 1) {
-          temp.uidNumber = `${18 - (values.uidNumber.length)} digit remain to enter`;
+      temp.uidNumber = "*Required Field";
+    } else {
+      if (values.uidNumber.length < 18) {
+        if (18 - values.uidNumber.length == 1) {
+          temp.uidNumber = `${18 - values.uidNumber.length
+            } digit remain to enter`;
+        } else {
+          temp.uidNumber = `${18 - values.uidNumber.length
+            } digits remain to enter`;
         }
-        else {
-          temp.uidNumber = `${18 - (values.uidNumber.length)} digits remain to enter`;
-        }
-      }
-
-      else if ((values.uidNumber.length) > 18) {
-        if ((values.uidNumber.length - 18) === 1) {
-          temp.uidNumber = `${(values.uidNumber.length) - 18} digit is remain to delete`;
-        }
-        else {
-          temp.uidNumber = `${(values.uidNumber.length) - 18} digits are remain to delete`;
+      } else if (values.uidNumber.length > 18) {
+        if (values.uidNumber.length - 18 == 1) {
+          temp.uidNumber = `${values.uidNumber.length - 18} digit is remain to delete`;
+        } else {
+          temp.uidNumber = `${values.uidNumber.length - 18} digits are remain to delete`;
         }
       }
       else {
-        temp.uidNumber = '';
+        temp.uidNumber = "";
       }
     }
 
-
-    //caste
+    //validatoin for caste
     if (!values.caste) {
-      temp.caste = '*Required Field';
-    }
-    else {
-      temp.caste = '';
+      temp.caste = "*Required Field";
+    } else {
+      temp.caste = "";
     }
 
-    //mobile number
-
+    //validatoin for mobile number
     if (!values.mobileNumber) {
-      temp.mobileNumber = '*Required Field';
+      temp.mobileNumber = "*Required Field";
     }
     else {
-      if (values.mobileNumber.length < 10) {
-        if ((10 - (values.mobileNumber.length)) === 1) {
+      if ((values.mobileNumber.length) < 10) {
+        if (10 - (values.mobileNumber.length) === 1) {
           temp.mobileNumber = `${10 - (values.mobileNumber.length)} digit remain to enter`;
-        }
-        else {
+        } else {
           temp.mobileNumber = `${10 - (values.mobileNumber.length)} digits remain to enter`;
         }
-      }
-      else if ((values.mobileNumber.length) > 10) {
+      } else if ((values.mobileNumber.length) > 10) {
         if ((values.mobileNumber.length - 10) === 1) {
           temp.mobileNumber = `${(values.mobileNumber.length) - 10} digit is remain to delete`;
-        }
-        else {
+        } else {
           temp.mobileNumber = `${(values.mobileNumber.length) - 10} digits are remain to delete`;
         }
       }
-      else {
-        temp.mobileNumber = '';
-      }
     }
 
+
+    console.log(values.birthDate);
     let bday = values.birthDate.split('-');
     let year = bday[0];
     let month = bday[1];
     let day = bday[2];
 
-
-    console.log(today);
-    //birth date
+    //validatoi for birth date
     if (!values.birthDate) {
-      temp.birthDate = '*Required Field';
-    }
-    else {
-      // if (year > yyyy) {
-      //   temp.birthDate = `year cannot be greater than ${yyyy}`;
-      // }
-      // else {
-      //   if (month > mm) {
-      //     temp.birthDate = `moth cannot be grater than ${mm}`;
-      //   }
-      //   else {
-      //     if (day > dd) {
-      //       temp.birthDate = `selected date cannot be grater than ${dd}`;
-      //     }
-      //     else {
-      //       temp.birthDate = '';
-      //     }
-      //   }
-      // }
+      temp.birthDate = "*Required Field";
+    } else {
       if (year >= yyyy && month >= mm && day >= dd) {
-        temp.birthDate = `date cannot be greater than ${today}`;
-      }
-      else {
-        temp.birthDate = '';
+        temp.birthDate = `Date cannot be greater than ${today}`;
       }
     }
 
-
-    // temp.grNumber = values.grNumber ? "" : "This Filed is Required";
-    // temp.uidNumber = values.uidNumber ? "" : "This Filed is Required";
-    // temp.caste = values.caste ? "" : "This Filed is Required";
-    // temp.birthDate = values.birthDate ? "" : "This Filed is Required";
 
     setErrors({
       ...temp,
@@ -202,16 +153,59 @@ export default function StudentEntryForm(props) {
     return Object.values(temp).every((x) => x === "");
   };
 
-  const { values, setValues, errors, setErrors, handleInputChange, resetForm } =
-    useForm(initialFValues);
+  const {
+    values,
+    setValues,
+    errors,
+    setErrors,
+    handleInputChange,
+    resetForm,
+  } = useForm(initialFValues);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
-      window.alert("Successfully submitted");
+      try {
+        const isStudentAdded = await fetch(
+          "http://localhost:5050/addStudents",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              schoolId: sessionStorage.getItem("schoolId"),
+              year: new Date().getFullYear(), // Taken Current year by default
+              studentId: 9, // Must taken form the user
+              grNo: values.grNumber,
+              UdiseNo: values.uidNumber,
+              studentName: values.studentName,
+              motherName: values.motherName,
+              fatherName: values.fatherName,
+              surname: values.surName,
+              birthDate: values.birthDate,
+              gender: "Female", // This school is only for girls
+              caste: values.caste,
+              standard: "STD 2", // Must taken from the user
+              address: "ABC", // Must taken from the user
+              contactNo: values.mobileNumber,
+              presentCount: 100, // Need discussion on this
+            }),
+          }
+        );
+        const parseRes = await isStudentAdded.json();
+        if (parseRes.isStudentAdded) {
+          window.alert("Successfully submitted");
+          resetForm();
+        } else {
+          window.alert(
+            "Same UDISE number or GR number exist in the school !!!"
+          );
+        }
+      } catch (err) {
+        console.error(err.message);
+      }
       // employeeService.insertEmployee(values);
-      console.log(values);
-      resetForm();
     }
   };
 
@@ -245,7 +239,6 @@ export default function StudentEntryForm(props) {
           />
 
           <Controls.Input
-            type='number'
             name="mobileNumber"
             label="Mobile Number"
             value={values.mobileNumber}
@@ -277,9 +270,9 @@ export default function StudentEntryForm(props) {
             error={errors.motherName}
           />
           <Controls.Input
-            type='number'
+            type="number"
             name="uidNumber"
-            label="UID Number"
+            label="UDISE Number"
             value={values.uidNumber}
             onChange={handleInputChange}
             error={errors.uidNumber}
@@ -291,7 +284,9 @@ export default function StudentEntryForm(props) {
             onChange={handleInputChange}
             InputProps={{
               startAdornment: (
-                <InputAdornment position="start">Birth Date :</InputAdornment>
+                <InputAdornment position="start">
+                  Birth Date :
+                </InputAdornment>
               ),
             }}
             error={errors.birthDate}
@@ -301,7 +296,11 @@ export default function StudentEntryForm(props) {
           <Grid item xs={6}></Grid>
 
           <Grid item xs={6}>
-            <Controls.Button sx={{ margin: 2 }} type="submit" text="Submit" />
+            <Controls.Button
+              sx={{ margin: 2 }}
+              type="submit"
+              text="Submit"
+            />
             <Controls.Button
               // disabled
               color="secondary"
