@@ -162,7 +162,6 @@ export default function StudentEntryForm(props) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (validate()) {
-            window.alert("Successfully submitted");
             try {
                 const isStudentAdded = await fetch(
                     "http://localhost:5050/addStudents",
@@ -191,14 +190,19 @@ export default function StudentEntryForm(props) {
                         }),
                     }
                 );
-                console.log(isStudentAdded);
                 const parseRes = await isStudentAdded.json();
-                console.log(parseRes);
+                if (parseRes.isStudentAdded) {
+                    window.alert("Successfully submitted");
+                    resetForm();
+                } else {
+                    window.alert(
+                        "Same udise number or gr number exist in the school !!!"
+                    );
+                }
             } catch (err) {
                 console.error(err.message);
             }
             // employeeService.insertEmployee(values);
-            resetForm();
         }
     };
 
