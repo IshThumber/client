@@ -10,6 +10,18 @@ export const getCasteCollection = () => [
   { id: "4", title: "SC" },
 ];
 
+export const getStandardCollection = () => [
+  { id: "1", title: "STD 1" },
+  { id: "2", title: "STD 2" },
+  { id: "3", title: "STD 3" },
+  { id: "4", title: "STD 4" },
+  { id: "5", title: "STD 5" },
+  { id: "6", title: "STD 6" },
+  { id: "7", title: "STD 7" },
+  { id: "8", title: "STD 8" },
+];
+
+
 
 
 // export function insertEmployee(data) {

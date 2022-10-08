@@ -15,6 +15,9 @@ const initialFValues = {
   birthDate: "",
   mobileNumber: "",
   caste: "",
+  standard: "",
+  address: "",
+  studentId: ""
 };
 
 let today = new Date();
@@ -146,6 +149,26 @@ export default function StudentEntryForm(props) {
       }
     }
 
+    // validation for standard  
+    if (!values.standard) {
+      temp.standard = "*Required Field";
+    } else {
+      temp.standard = "";
+    }
+
+    //validatoin for address
+    if (!values.address) {
+      temp.address = "*Required Field";
+    } else {
+      temp.address = "";
+    }
+
+    // validatoin for roll number
+    if (!values.studentId) {
+      temp.studentId = "*Required Field";
+    } else {
+      temp.studentId = "";
+    }
 
     setErrors({
       ...temp,
@@ -186,8 +209,8 @@ export default function StudentEntryForm(props) {
               birthDate: values.birthDate,
               gender: "Female", // This school is only for girls
               caste: values.caste,
-              standard: "STD 2", // Must taken from the user
-              address: "ABC", // Must taken from the user
+              standard: values.standard, // Must taken from the user
+              address: values.address, // Must taken from the user
               contactNo: values.mobileNumber,
               presentCount: 100, // Need discussion on this
             }),
@@ -211,7 +234,9 @@ export default function StudentEntryForm(props) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Grid container paddingLeft={20}>
+
+      <Grid container paddingLeft={20}  >
+
         <Grid item xs={6}>
           <Controls.Input
             name="surName"
@@ -245,16 +270,27 @@ export default function StudentEntryForm(props) {
             onChange={handleInputChange}
             error={errors.mobileNumber}
           />
-          <Controls.Select
-            name="caste"
-            label="Caste"
-            value={values.caste}
+
+          <Grid item marginTop={1}>
+            <Controls.Select
+              name="caste"
+              label="Caste"
+              value={values.caste}
+              onChange={handleInputChange}
+              options={employeeService.getCasteCollection()}
+              error={errors.caste}
+            />
+          </Grid>
+          <Controls.Input
+            name="address"
+            label="Address"
+            value={values.address}
             onChange={handleInputChange}
-            options={employeeService.getCasteCollection()}
-            error={errors.caste}
-          ></Controls.Select>
+            error={errors.address}
+          />
         </Grid>
-        <Grid item xs={6}>
+
+        <Grid item xs={6} >
           <Controls.Input
             name="studentName"
             label="Student Name"
@@ -262,6 +298,7 @@ export default function StudentEntryForm(props) {
             onChange={handleInputChange}
             error={errors.studentName}
           />
+
           <Controls.Input
             name="motherName"
             label="Mother Name"
@@ -269,6 +306,7 @@ export default function StudentEntryForm(props) {
             onChange={handleInputChange}
             error={errors.motherName}
           />
+
           <Controls.Input
             type="number"
             name="uidNumber"
@@ -277,6 +315,7 @@ export default function StudentEntryForm(props) {
             onChange={handleInputChange}
             error={errors.uidNumber}
           />
+
           <Controls.Input
             type="date"
             name="birthDate"
@@ -291,7 +330,29 @@ export default function StudentEntryForm(props) {
             }}
             error={errors.birthDate}
           />
+          <Grid item marginTop={1}>
+
+            <Controls.Select
+              name="standard"
+              label="Standard"
+              value={values.standard}
+              onChange={handleInputChange}
+              options={employeeService.getStandardCollection()}
+              error={errors.standard}
+            />
+          </Grid>
+
+
+          <Controls.Input
+            type="number"
+            name="studentId"
+            label="Student ID"
+            value={values.studentId}
+            onChange={handleInputChange}
+            error={errors.studentId}
+          />
         </Grid>
+
         <Grid container>
           <Grid item xs={6}></Grid>
 
