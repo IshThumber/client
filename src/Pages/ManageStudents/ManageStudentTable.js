@@ -5,15 +5,10 @@ import data from "./data.json";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import StudentEntry from "./StudentEntry/StudentEntry";
+import Button from "../../components/controls/Button";
+import StandardsList from "./StandardsList";
 
 let standardWiseData;
-//create list for dynamic standard
-const standardsList = [
-    { key: 1, value: "1", display: 1 },
-    { key: 2, value: "2", display: 2 },
-    { key: 3, value: "3", display: 3 },
-    { key: 4, value: "4", display: 4 },
-];
 
 //here id is the key value of id which is shown in the json
 //handler for the edit in student details
@@ -107,6 +102,12 @@ const columns = [
 export default function ManageStudentTable(props) {
     const [row, setRows] = useState([]); //useState for store rows of table
     const [standard, setStandard] = useState(0); //useState for set standard which is selected by user
+    const [standardsList, setStandardList] = useState([]); // useSate for set standardList which comes from backend
+
+    // Handler calls method for fetching list from backend
+    async function handleStandardList() {
+        setStandardList(await StandardsList());
+    }
 
     //event handler for standard drop down
     function handleStandard() {
@@ -120,7 +121,6 @@ export default function ManageStudentTable(props) {
         try {
             if (standard != 0) {
                 async function studentsData() {
-                    let schoolName = "Kanya Shala";
                     let year = 2022;
                     let std = standard.toString();
                     let ob = await fetch(
@@ -155,12 +155,17 @@ export default function ManageStudentTable(props) {
             <div className="drop-down-standard-manageStudent">
                 <label>Choose a standard:</label>
 
-                <select onChange={handleStandard} name="standard" id="standard">
+                <select
+                    onClick={handleStandardList}
+                    onChange={handleStandard}
+                    name="standard"
+                    id="standard"
+                >
                     <option value="None">None</option>
 
                     {standardsList.map((v) => (
-                        <option key={v.key} value={v.value}>
-                            {v.display}
+                        <option key={v.key} value={v.listValue}>
+                            {v.listValue}
                         </option>
                     ))}
                 </select>
