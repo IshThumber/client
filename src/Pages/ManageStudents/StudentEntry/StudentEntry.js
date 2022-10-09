@@ -46,7 +46,7 @@ export default function StudentEntry(props) {
                     />
                 </DialogActions>
                 <DialogContent>
-                    // Passing list of standards as a prop
+                    {/* Passing list of standards as a prop */}
                     <StudentEntryForm StandardList={standardList} />
                 </DialogContent>
             </Dialog>

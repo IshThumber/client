@@ -88,9 +88,8 @@ export default function DashboardStatusTable() {
     let ob2 = StatusData.filter((d) => d.standard > 5);
     setRows1(ob1);
     setRows2(ob2);
-  },[]);
+  }, []);
 
-  console.log("hello");
   return (
     <div>
       <Box
@@ -115,7 +114,6 @@ export default function DashboardStatusTable() {
           disableColumnSelector //to remove column selection
           disableDensitySelector //to remove density selection
           disableColumnMen
-          
         />
       </Box>
 

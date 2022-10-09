@@ -18,3 +18,8 @@
 .MuiDialogContent-root {
   text-align: center;
 }
+.LogOut-DialogBox {
+  width: 300px;
+  color: black;
+  background-color: white;
+}
