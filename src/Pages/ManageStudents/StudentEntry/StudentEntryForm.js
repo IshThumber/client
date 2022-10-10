@@ -31,7 +31,7 @@ export default function StudentEntryForm(props) {
     const validate = () => {
         let temp = {};
 
-        //validatoin for student's name
+        //validation for student's name
         if (!values.studentName) {
             temp.studentName = "*Required Field";
         } else {
@@ -53,7 +53,7 @@ export default function StudentEntryForm(props) {
             }
         }
 
-        //valdiatoin for father's name
+        //validation for father's name
         if (!values.fatherName) {
             temp.fatherName = "*Required Field";
         } else {
@@ -75,7 +75,7 @@ export default function StudentEntryForm(props) {
             }
         }
 
-        // validatoin for GR number
+        // validation for GR number
         if (!values.grNumber) {
             temp.grNumber = "*Required Field";
         } else {
@@ -107,14 +107,14 @@ export default function StudentEntryForm(props) {
             }
         }
 
-        //validatoin for caste
+        //validation for caste
         if (!values.caste) {
             temp.caste = "*Required Field";
         } else {
             temp.caste = "";
         }
 
-        //validatoin for mobile number
+        //validation for mobile number
         if (!values.mobileNumber) {
             temp.mobileNumber = "*Required Field";
         } else {
@@ -158,14 +158,14 @@ export default function StudentEntryForm(props) {
             temp.standard = "";
         }
 
-        //validatoin for address
+        //validation for address
         if (!values.address) {
             temp.address = "*Required Field";
         } else {
             temp.address = "";
         }
 
-        // validatoin for roll number
+        // validation for roll number
         if (!values.studentId) {
             temp.studentId = "*Required Field";
         } else {
