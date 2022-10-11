@@ -12,6 +12,7 @@ const initialFValues = {
 };
 
 export default function StandardEntryForm(props) {
+  const { addOrEdit } = props;
   const validate = () => {
     let temp = {};
     setErrors({
@@ -27,6 +28,7 @@ export default function StandardEntryForm(props) {
     e.preventDefault();
     if (validate()) {
       //backend Logic...........
+      addOrEdit(values, resetForm);
     }
   };
 

@@ -4,10 +4,10 @@
 // };
 
 export const getCasteCollection = () => [
-    { id: "1", title: "General" },
-    { id: "2", title: "OBC" },
-    { id: "3", title: "ST" },
-    { id: "4", title: "SC" },
+  { key: "1", listValue: "General" },
+  { key: "2", listValue: "OBC" },
+  { key: "3", listValue: "ST" },
+  { key: "4", listValue: "SC" },
 ];
 
 // export const getStandardCollection = () => [
