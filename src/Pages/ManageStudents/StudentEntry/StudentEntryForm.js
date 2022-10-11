@@ -109,6 +109,7 @@ export default function StudentEntryForm(props) {
           />
 
           <Controls.Input
+            type="number"
             name="mobileNumber"
             label="Mobile Number"
             value={values.mobileNumber}
