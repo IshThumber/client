@@ -22,21 +22,29 @@ const initialFValues = {
 };
 
 export default function StudentEntryForm(props) {
-    const { values, setValues, errors, setErrors, handleInputChange, resetForm } =
-        useForm(initialFValues);
+    const {
+        values,
+        setValues,
+        errors,
+        setErrors,
+        handleInputChange,
+        resetForm,
+    } = useForm(initialFValues);
 
     const validate = () => {
         setErrors({
             ...Validation(values),
         });
+        return true;
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (validate()) {
+            console.log("Hiii");
             try {
                 const isStudentAdded = await fetch(
-                    "http://localhost:5050/addStudents",
+                    "http://localhost:5050/addStudents/",
                     {
                         method: "POST",
                         headers: {
@@ -44,8 +52,8 @@ export default function StudentEntryForm(props) {
                         },
                         body: JSON.stringify({
                             schoolId: sessionStorage.getItem("schoolId"),
-                            year: new Date().getFullYear(), // Taken Current year by default
-                            studentId: 9, // Must taken form the user
+                            year: new Date().getFullYear(),
+                            studentId: parseInt(values.studentId),
                             grNo: values.grNumber,
                             UdiseNo: values.uidNumber,
                             studentName: values.studentName,
@@ -53,16 +61,17 @@ export default function StudentEntryForm(props) {
                             fatherName: values.fatherName,
                             surname: values.surName,
                             birthDate: values.birthDate,
-                            gender: "Female", // This school is only for girls
+                            gender: "Female",
                             caste: values.caste,
-                            standard: values.standard, // Must taken from the user
-                            address: values.address, // Must taken from the user
+                            standard: "STD " + values.standard,
+                            address: values.address,
                             contactNo: values.mobileNumber,
-                            presentCount: 100, // Need discussion on this
+                            presentCount: 100,
                         }),
                     }
                 );
                 const parseRes = await isStudentAdded.json();
+                console.log(parseRes);
                 if (parseRes.isStudentAdded) {
                     window.alert("Successfully submitted");
                     resetForm();
@@ -169,7 +178,9 @@ export default function StudentEntryForm(props) {
                         onChange={handleInputChange}
                         InputProps={{
                             startAdornment: (
-                                <InputAdornment position="start">Birth Date :</InputAdornment>
+                                <InputAdornment position="start">
+                                    Birth Date :
+                                </InputAdornment>
                             ),
                         }}
                         error={errors.birthDate}
@@ -199,7 +210,11 @@ export default function StudentEntryForm(props) {
                     <Grid item xs={6}></Grid>
 
                     <Grid item xs={6}>
-                        <Controls.Button sx={{ margin: 2 }} type="submit" text="Submit" />
+                        <Controls.Button
+                            sx={{ margin: 2 }}
+                            type="submit"
+                            text="Submit"
+                        />
                         <Controls.Button
                             // disabled
                             color="secondary"
