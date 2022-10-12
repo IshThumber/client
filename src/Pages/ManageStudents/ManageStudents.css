@@ -9,9 +9,10 @@
   padding-left: 20px;
   margin-left: 270px;
   margin-top: 30px;
+  transform: translateY(8%);
 }
 
 .drop-down-standard-manageStudent {
-  margin-bottom: 40px;
   border: 1px solid #ccc;
+  transform: translateY(100%);
 }
