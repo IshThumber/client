@@ -15,7 +15,6 @@ export default function StandardEntryForm(props) {
   const { addOrEdit } = props;
   const validate = () => {
     let temp = {};
-    console.log(`${values.name} ${values.teacherId} ${values.contactNo} ${values.standard}`);
 
     //for validation of teacher's name
 
@@ -56,13 +55,19 @@ export default function StandardEntryForm(props) {
 
     //for validation of standard
 
-    if (!values.standard) {
+    if (!values.standard || values.standard.trim() === 'STD') {
       temp.standard = "*Required Field";
     } else {
-      temp.standard = "";
+      let stdArr = values.standard.split(' ');
+      if (!/[^1-8]/i.test(stdArr[1])) {
+        temp.standard = "";
+      }
+
+      else {
+        temp.standard = "Standard must between 1-8";
+      }
     }
 
-    console.log(values.standard);
 
     //for validation of teacher id
     if (!values.teacherId) {
@@ -120,6 +125,7 @@ export default function StandardEntryForm(props) {
           />
 
           <Controls.Input
+            type='number'
             name="teacherId"
             label="Teacher ID"
             value={values.teacherId}
