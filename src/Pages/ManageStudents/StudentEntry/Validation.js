@@ -65,23 +65,19 @@ export default function Validation(values) {
   } else {
     if (values.uidNumber.length < 18) {
       if (18 - values.uidNumber.length == 1) {
-        temp.uidNumber = `${
-          18 - values.uidNumber.length
-        } digit remain to enter`;
+        temp.uidNumber = `${18 - values.uidNumber.length
+          } digit remain to enter`;
       } else {
-        temp.uidNumber = `${
-          18 - values.uidNumber.length
-        } digits remain to enter`;
+        temp.uidNumber = `${18 - values.uidNumber.length
+          } digits remain to enter`;
       }
     } else if (values.uidNumber.length > 18) {
       if (values.uidNumber.length - 18 == 1) {
-        temp.uidNumber = `${
-          values.uidNumber.length - 18
-        } digit is remain to delete`;
+        temp.uidNumber = `${values.uidNumber.length - 18
+          } digit is remain to delete`;
       } else {
-        temp.uidNumber = `${
-          values.uidNumber.length - 18
-        } digits are remain to delete`;
+        temp.uidNumber = `${values.uidNumber.length - 18
+          } digits are remain to delete`;
       }
     } else {
       temp.uidNumber = "";
@@ -101,23 +97,19 @@ export default function Validation(values) {
   } else {
     if (values.mobileNumber.length < 10) {
       if (10 - values.mobileNumber.length === 1) {
-        temp.mobileNumber = `${
-          10 - values.mobileNumber.length
-        } digit remain to enter`;
+        temp.mobileNumber = `${10 - values.mobileNumber.length
+          } digit remain to enter`;
       } else {
-        temp.mobileNumber = `${
-          10 - values.mobileNumber.length
-        } digits remain to enter`;
+        temp.mobileNumber = `${10 - values.mobileNumber.length
+          } digits remain to enter`;
       }
     } else if (values.mobileNumber.length > 10) {
       if (values.mobileNumber.length - 10 === 1) {
-        temp.mobileNumber = `${
-          values.mobileNumber.length - 10
-        } digit is remain to delete`;
+        temp.mobileNumber = `${values.mobileNumber.length - 10
+          } digit is remain to delete`;
       } else {
-        temp.mobileNumber = `${
-          values.mobileNumber.length - 10
-        } digits are remain to delete`;
+        temp.mobileNumber = `${values.mobileNumber.length - 10
+          } digits are remain to delete`;
       }
     }
   }
@@ -147,7 +139,12 @@ export default function Validation(values) {
   if (!values.address) {
     temp.address = "*Required Field";
   } else {
-    temp.address = "";
+    if (!/[^a-zA-Z,.]/i.test(values.adderss)) {
+      temp.address = "";
+    }
+    else {
+      temp.address = "Special Characters are not Allowed";
+    }
   }
 
   // validation for roll number
