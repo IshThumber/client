@@ -22,13 +22,13 @@ const Analytics = (props) => {
   return (
     <>
       <div>
-        <Sidebar />
+        <Sidebar {...props}></Sidebar>
         <Header {...props} HeaderText="Analytics" />
         <div className="Content-container">
           <div className="drop-down-standard-manageStudent">
             <label>Choose a standard:</label>
 
-            <select 
+            <select
               onClick={handleStandardList}
               onChange={handleStandard}
               name="standard"

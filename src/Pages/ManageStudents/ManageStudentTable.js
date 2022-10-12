@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
 import { Box } from "@mui/material";
 import { FaEdit } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
+import { MdDelete, MdOutlineDragIndicator } from "react-icons/md";
 import StudentEntry from "./StudentEntry/StudentEntry";
 import Button from "../../components/controls/Button";
 import StandardsList from "./StandardsList";
+import { textAlign } from "@mui/system";
 
 let standardWiseData;
 
@@ -171,15 +172,18 @@ export default function ManageStudentTable(props) {
   return (
     <div>
       <div className="drop-down-standard">
-        <label>Choose a standard:</label>
+        <label>Standard : </label>
 
         <select
+          style={{ padding: "8px" }}
           onClick={handleStandardList}
           onChange={handleStandard}
           name="standard"
           id="standard"
         >
-          <option value="None">None</option>
+          <option style={{ padding: "8px" }} value="None">
+            None
+          </option>
 
           {standardsList.map((v) => (
             <option key={v.key} value={v.listValue}>
@@ -188,44 +192,63 @@ export default function ManageStudentTable(props) {
           ))}
         </select>
 
-        <div>
-          Total Number of student in standard {standard} : {row.length}
+        <div
+          style={{
+            width: "250px",
+            marginTop: "20px",
+            textAlign: "center",
+            backgroundColor: "#fff",
+            borderRadius: "10px",
+            display: "block",
+            padding: "1rem 3rem",
+            borderRadius: "10px",
+            lineHeight: "30px",
+            boxShadow: "0px 3px 5px rgba(0, 0, 0, 0.2)",
+            transition: "all 0.15s",
+          }}
+        >
+          <div>Total Students </div>
+          <div style={{ fontSize: "1.4rem", fontWeight: "700" }}>
+            {" "}
+            {row.length}
+          </div>
         </div>
+      </div>
+      <div>
         <div style={{ textAlign: "end", marginRight: "250px" }}>
           <StudentEntry />
         </div>
-      </div>
-
-      <Box
-        sx={{
-          height: 400,
-          width: "80%",
-          border: "1px solid black",
-          "& .super-app-theme--header": {
-            color: "#ffffff",
-            backgroundColor: "#346f82",
-          },
-        }}
-      >
-        <DataGrid
-          cell--textCenter
-          rows={row}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]} //table pagination
-          components={{ Toolbar: GridToolbar }} //header above the table
-          disableColumnFilter //remove filter button
-          disableColumnSelector //to remove column selection
-          disableDensitySelector //to remove density selection
-          disableColumnMenu
-          componentsProps={{
-            toolbar: {
-              showQuickFilter: true,
-              quickFilterProps: { debounceMs: 500 },
+        <Box
+          sx={{
+            height: 400,
+            width: "80%",
+            border: "1px solid black",
+            "& .super-app-theme--header": {
+              color: "#ffffff",
+              backgroundColor: "#346f82",
             },
-          }} //search button
-        />
-      </Box>
+          }}
+        >
+          <DataGrid
+            cell--textCenter
+            rows={row}
+            columns={columns}
+            pageSize={5}
+            rowsPerPageOptions={[5]} //table pagination
+            components={{ Toolbar: GridToolbar }} //header above the table
+            disableColumnFilter //remove filter button
+            disableColumnSelector //to remove column selection
+            disableDensitySelector //to remove density selection
+            disableColumnMenu
+            componentsProps={{
+              toolbar: {
+                showQuickFilter: true,
+                quickFilterProps: { debounceMs: 500 },
+              },
+            }} //search button
+          />
+        </Box>
+      </div>
     </div>
   );
 }

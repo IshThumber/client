@@ -5,7 +5,7 @@
   bottom: 0;
   background-color: #2b3d53;
   /* font-size: 5rem; */
-  color: #fff;
+  color: rgb(245, 245, 245);
 }
 
 .MenuItem {
@@ -27,4 +27,17 @@
 
 .pro-sidebar-layout {
   background-color: #1a222c;
+}
+
+.pro-sidebar .pro-menu {
+  padding-top: -10px;
+}
+
+.pro-sidebar-footer {
+  margin-top: 390px;
+}
+
+.pro-sidebar .pro-menu {
+  padding-bottom: 0;
+  padding-top: 0;
 }

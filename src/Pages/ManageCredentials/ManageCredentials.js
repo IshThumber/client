@@ -6,7 +6,7 @@ const ManageCredentials = (props) => {
   return (
     <>
       <div>
-        <Sidebar />
+        <Sidebar {...props}></Sidebar>
         <Header {...props} HeaderText="Manage Credentials" />
         <div className="Content-container">
           <ManageCredentialsTable />

@@ -8,7 +8,7 @@ const ManageStudents = (props) => {
   return (
     <>
       <div>
-        <Sidebar />
+        <Sidebar {...props}></Sidebar>
         <Header {...props} HeaderText="Manage Student" />
         <div className="Content-container">
           <ManageStudentTable />
