@@ -2,14 +2,14 @@ import React from "react";
 import "./ManageStudents.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import ManageStudentTable from "./ManageStudentTable";
-import StudentEntry from "./StudentEntry/StudentEntry";
+import Header from "../../components/Header/Header";
 
-const ManageStudents = () => {
+const ManageStudents = (props) => {
   return (
     <>
       <div>
         <Sidebar />
-        <div className="Header"></div>
+        <Header {...props} HeaderText="Manage Student" />
         <div className="Content-container">
           <ManageStudentTable />
         </div>

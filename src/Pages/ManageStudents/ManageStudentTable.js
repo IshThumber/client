@@ -34,8 +34,7 @@ const columns = [
   {
     field: "studentId",
     headerName: "Sr",
-    width: 90,
-    flex: 1,
+    width: 70,
     align: "center",
     headerClassName: "super-app-theme--header",
     headerAlign: "center",
@@ -48,6 +47,15 @@ const columns = [
     headerName: "UID Number",
     flex: 1,
     width: 190,
+  },
+  {
+    field: "grNo",
+    headerName: "G R Number",
+    width: 90,
+    flex: 1,
+    align: "center",
+    headerClassName: "super-app-theme--header",
+    headerAlign: "center",
   },
   {
     flex: 1,
@@ -66,13 +74,22 @@ const columns = [
       } `,
   },
   {
+    field: "contactNo",
+    headerName: "Mobile Number",
+    width: 90,
+    flex: 1,
+    align: "center",
+    headerClassName: "super-app-theme--header",
+    headerAlign: "center",
+  },
+  {
     field: "actions",
     align: "center",
     headerClassName: "super-app-theme--header",
     headerAlign: "center",
     type: "actions",
     headerName: "Actions",
-    width: 100,
+    width: 80,
     cellClassName: "actions",
     getActions: ({ id }) => {
       // const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
@@ -153,7 +170,7 @@ export default function ManageStudentTable(props) {
 
   return (
     <div>
-      <div className="drop-down-standard-manageStudent">
+      <div className="drop-down-standard">
         <label>Choose a standard:</label>
 
         <select
