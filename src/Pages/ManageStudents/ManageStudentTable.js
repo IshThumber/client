@@ -39,13 +39,6 @@ const handleDeleteClick = (id) => async () => {
         const res = await isDeleted.json();
         if (res.isDeleted) {
             window.alert("Successfully deleted");
-            let newData = [];
-            standardWiseData.forEach((i) => {
-                if (i.id !== id) {
-                    newData.push(i);
-                }
-            });
-            ManageStudentTable();
         } else {
             window.alert("Some error occured!!!");
         }
@@ -177,7 +170,24 @@ export default function ManageStudentTable(props) {
                         .catch((err) => console.error(err));
                     if (!ob.message) {
                         standardWiseData = JSON.parse(ob);
-                        setRows(JSON.parse(ob));
+                        for (let i = 0; i < standardWiseData.length - 1; i++) {
+                            for (
+                                let j = 0;
+                                j < standardWiseData.length - i - 1;
+                                j++
+                            ) {
+                                if (
+                                    standardWiseData[j].studentId >
+                                    standardWiseData[j + 1].studentId
+                                ) {
+                                    let temp = standardWiseData[j];
+                                    standardWiseData[j] =
+                                        standardWiseData[j + 1];
+                                    standardWiseData[j + 1] = temp;
+                                }
+                            }
+                        }
+                        setRows(standardWiseData);
                     } else {
                         setRows([]);
                     }
@@ -190,8 +200,6 @@ export default function ManageStudentTable(props) {
             console.error(err.message);
         }
     }, [standard]);
-
-    console.log(standardWiseData);
 
     return (
         <div>
