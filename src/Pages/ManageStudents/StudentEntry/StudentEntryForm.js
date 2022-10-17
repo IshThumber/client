@@ -32,10 +32,13 @@ export default function StudentEntryForm(props) {
     } = useForm(initialFValues);
 
     const validate = () => {
-        setErrors({
-            ...Validation(values),
-        });
-        return true;
+        let temp = Validation(values);
+        if (typeof temp == "boolean" && temp) {
+            setErrors({});
+            return true;
+        } else {
+            setErrors(temp);
+        }
     };
 
     const handleSubmit = async (e) => {
