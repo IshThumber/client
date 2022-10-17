@@ -8,132 +8,167 @@ import Button from "../../components/controls/Button";
 import StandardsList from "./StandardsList";
 import { textAlign } from "@mui/system";
 
-let standardWiseData;
-
-//here id is the key value of id which is shown in the json
-//handler for the edit in student details
-const handleEditClick = (id) => () => {
-    alert(`Edit ${id}`);
-    let singleStudentData;
-    standardWiseData.forEach((index) => {
-        if (index.id == id) {
-            singleStudentData = index;
-        }
-    });
-    console.log(singleStudentData);
-    //logic here.............//
-};
-
-//handler for the delete in student details
-const handleDeleteClick = (id) => async () => {
-    alert(`Delete ${id}`);
-    //logic here.............//
-    try {
-        const isDeleted = await fetch(
-            `http://localhost:5050/deleteStudents/${id}`,
-            {
-                method: "PUT",
-            }
-        );
-
-        const res = await isDeleted.json();
-        if (res.isDeleted) {
-            window.alert("Successfully deleted");
-        } else {
-            window.alert("Some error occured!!!");
-        }
-    } catch (err) {
-        console.log(err.message);
-    }
-};
-
-//represent columns of table
-const columns = [
-    {
-        field: "studentId",
-        headerName: "Sr",
-        width: 70,
-        align: "center",
-        headerClassName: "super-app-theme--header",
-        headerAlign: "center",
-    },
-    {
-        field: "UdiseNo",
-        align: "center",
-        headerClassName: "super-app-theme--header",
-        headerAlign: "center",
-        headerName: "UID Number",
-        flex: 1,
-        width: 190,
-    },
-    {
-        field: "grNo",
-        headerName: "G R Number",
-        width: 90,
-        flex: 1,
-        align: "center",
-        headerClassName: "super-app-theme--header",
-        headerAlign: "center",
-    },
-    {
-        flex: 1,
-        field: "fullName",
-        align: "center",
-        headerClassName: "super-app-theme--header",
-        headerAlign: "center",
-        headerName: "Full name",
-        cellAlign: "center",
-        description: "This column has a value getter and is not sortable.",
-        sortable: false,
-        width: 160,
-        valueGetter: (params) =>
-            `${params.row.surname || ""} ${params.row.studentName || ""} ${
-                params.row.fatherName || ""
-            } `,
-    },
-    {
-        field: "contactNo",
-        headerName: "Mobile Number",
-        width: 90,
-        flex: 1,
-        align: "center",
-        headerClassName: "super-app-theme--header",
-        headerAlign: "center",
-    },
-    {
-        field: "actions",
-        align: "center",
-        headerClassName: "super-app-theme--header",
-        headerAlign: "center",
-        type: "actions",
-        headerName: "Actions",
-        width: 80,
-        cellClassName: "actions",
-        getActions: ({ id }) => {
-            // const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
-
-            return [
-                <GridActionsCellItem
-                    icon={<FaEdit />}
-                    label="Edit"
-                    className="textPrimary"
-                    onClick={handleEditClick(id)}
-                    color="inherit"
-                />,
-                <GridActionsCellItem
-                    icon={<MdDelete />}
-                    label="Delete"
-                    onClick={handleDeleteClick(id)}
-                    color="inherit"
-                />,
-            ];
-        },
-    },
-];
-
 //main function start from here...
 
 export default function ManageStudentTable(props) {
+    let standardWiseData;
+
+    async function studentsData() {
+        let year = 2022;
+        let std = standard.toString();
+        let ob = await fetch(
+            `http://localhost:5050/showStudents/${sessionStorage.getItem(
+                "schoolId"
+            )}/${year}/STD ${std}`
+        )
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+            })
+            .catch((err) => console.error(err));
+        if (!ob.message) {
+            standardWiseData = JSON.parse(ob);
+            for (let i = 0; i < standardWiseData.length - 1; i++) {
+                for (let j = 0; j < standardWiseData.length - i - 1; j++) {
+                    if (
+                        standardWiseData[j].studentId >
+                        standardWiseData[j + 1].studentId
+                    ) {
+                        let temp = standardWiseData[j];
+                        standardWiseData[j] = standardWiseData[j + 1];
+                        standardWiseData[j + 1] = temp;
+                    }
+                }
+            }
+            setRows(standardWiseData);
+        } else {
+            setRows([]);
+        }
+    }
+
+    //here id is the key value of id which is shown in the json
+    //handler for the edit in student details
+    const handleEditClick = (id) => () => {
+        alert(`Edit ${id}`);
+        let singleStudentData;
+        standardWiseData.forEach((index) => {
+            if (index.id == id) {
+                singleStudentData = index;
+            }
+        });
+        console.log(singleStudentData);
+        //logic here.............//
+    };
+
+    //handler for the delete in student details
+    const handleDeleteClick = (id) => async () => {
+        alert(`Delete ${id}`);
+        //logic here.............//
+        try {
+            const isDeleted = await fetch(
+                `http://localhost:5050/deleteStudents/${id}`,
+                {
+                    method: "PUT",
+                }
+            );
+
+            const res = await isDeleted.json();
+            if (res.isDeleted) {
+                window.alert("Successfully deleted");
+                studentsData();
+            } else {
+                window.alert("Some error occured!!!");
+            }
+        } catch (err) {
+            console.log(err.message);
+        }
+    };
+
+    //represent columns of table
+    const columns = [
+        {
+            field: "studentId",
+            headerName: "Sr",
+            width: 70,
+            align: "center",
+            headerClassName: "super-app-theme--header",
+            headerAlign: "center",
+        },
+        {
+            field: "UdiseNo",
+            align: "center",
+            headerClassName: "super-app-theme--header",
+            headerAlign: "center",
+            headerName: "UID Number",
+            flex: 1,
+            width: 190,
+        },
+        {
+            field: "grNo",
+            headerName: "G R Number",
+            width: 90,
+            flex: 1,
+            align: "center",
+            headerClassName: "super-app-theme--header",
+            headerAlign: "center",
+        },
+        {
+            flex: 1,
+            field: "fullName",
+            align: "center",
+            headerClassName: "super-app-theme--header",
+            headerAlign: "center",
+            headerName: "Full name",
+            cellAlign: "center",
+            description: "This column has a value getter and is not sortable.",
+            sortable: false,
+            width: 160,
+            valueGetter: (params) =>
+                `${params.row.surname || ""} ${params.row.studentName || ""} ${
+                    params.row.fatherName || ""
+                } `,
+        },
+        {
+            field: "contactNo",
+            headerName: "Mobile Number",
+            width: 90,
+            flex: 1,
+            align: "center",
+            headerClassName: "super-app-theme--header",
+            headerAlign: "center",
+        },
+        {
+            field: "actions",
+            align: "center",
+            headerClassName: "super-app-theme--header",
+            headerAlign: "center",
+            type: "actions",
+            headerName: "Actions",
+            width: 80,
+            cellClassName: "actions",
+            getActions: ({ id }) => {
+                // const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
+
+                return [
+                    <GridActionsCellItem
+                        icon={<FaEdit />}
+                        label="Edit"
+                        className="textPrimary"
+                        onClick={handleEditClick(id)}
+                        color="inherit"
+                    />,
+                    <GridActionsCellItem
+                        icon={<MdDelete />}
+                        label="Delete"
+                        onClick={handleDeleteClick(id)}
+                        color="inherit"
+                    />,
+                ];
+            },
+        },
+    ];
+
     const [row, setRows] = useState([]); //useState for store rows of table
     const [standard, setStandard] = useState(0); //useState for set standard which is selected by user
     const [standardsList, setStandardList] = useState([]); // useSate for set standardList which comes from backend
@@ -154,44 +189,6 @@ export default function ManageStudentTable(props) {
     useEffect(() => {
         try {
             if (standard != 0) {
-                async function studentsData() {
-                    let year = 2022;
-                    let std = standard.toString();
-                    let ob = await fetch(
-                        `http://localhost:5050/showStudents/${sessionStorage.getItem(
-                            "schoolId"
-                        )}/${year}/STD ${std}`
-                    )
-                        .then((response) => {
-                            if (response.ok) {
-                                return response.json();
-                            }
-                        })
-                        .catch((err) => console.error(err));
-                    if (!ob.message) {
-                        standardWiseData = JSON.parse(ob);
-                        for (let i = 0; i < standardWiseData.length - 1; i++) {
-                            for (
-                                let j = 0;
-                                j < standardWiseData.length - i - 1;
-                                j++
-                            ) {
-                                if (
-                                    standardWiseData[j].studentId >
-                                    standardWiseData[j + 1].studentId
-                                ) {
-                                    let temp = standardWiseData[j];
-                                    standardWiseData[j] =
-                                        standardWiseData[j + 1];
-                                    standardWiseData[j + 1] = temp;
-                                }
-                            }
-                        }
-                        setRows(standardWiseData);
-                    } else {
-                        setRows([]);
-                    }
-                }
                 studentsData();
             } else {
                 setRows([]);
@@ -248,7 +245,7 @@ export default function ManageStudentTable(props) {
             </div>
             <div>
                 <div style={{ textAlign: "end", marginRight: "250px" }}>
-                    <StudentEntry />
+                    <StudentEntry studentData={studentsData} />
                 </div>
                 <Box
                     sx={{

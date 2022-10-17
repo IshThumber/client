@@ -25,6 +25,7 @@ export default function StudentEntry(props) {
     //handler when dialog close button is clicked
     const handleClose = () => {
         setOpen(false);
+        props.studentData();
     };
 
     const handleClickUpload = async () => {
@@ -34,6 +35,7 @@ export default function StudentEntry(props) {
 
     const handleClosePopup = () => {
         setOpenPopup(false);
+        props.studentData();
     };
 
     const addOrEdit = (student, resetForm) => {
