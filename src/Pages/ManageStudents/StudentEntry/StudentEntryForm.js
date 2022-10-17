@@ -76,12 +76,10 @@ export default function StudentEntryForm(props) {
                 const parseRes = await isStudentAdded.json();
                 console.log(parseRes);
                 if (parseRes.isStudentAdded) {
-                    window.alert("Successfully submitted");
+                    window.alert(parseRes.message);
                     resetForm();
                 } else {
-                    window.alert(
-                        "Same UDISE number or GR number exist in the school !!!"
-                    );
+                    window.alert(parseRes.message);
                 }
             } catch (err) {
                 console.error(err.message);
