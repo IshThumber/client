@@ -7,8 +7,8 @@ function Dashboard(props) {
   return (
     <>
       <div className="Flex">
-        <Sidebar />
-        <Header {...props} HeaderText="Dashboard" />
+        <Sidebar {...props}></Sidebar>
+        <Header HeaderText="Dashboard" />
         <div className="Content-container">
           <div>
             <DashboardStatusTable />

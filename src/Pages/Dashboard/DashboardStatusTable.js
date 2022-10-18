@@ -94,7 +94,7 @@ export default function DashboardStatusTable() {
     <div>
       <Box
         sx={{
-          height: 400,
+          height: 300,
           width: "80%",
           border: "1px solid black",
           "& .super-app-theme--header": {
@@ -107,19 +107,24 @@ export default function DashboardStatusTable() {
           cell--textCenter
           rows={row1}
           columns={columns1}
-          // pageSize={5}
+          pageSize={5}
           // rowsPerPageOptions={[5]} //table pagination
           components={{ Toolbar: GridToolbar }} //header above the table
           disableColumnFilter //remove filter button
           disableColumnSelector //to remove column selection
           disableDensitySelector //to remove density selection
           disableColumnMen
+          disablrPagination
+          disableSelectionOnClick
+          disableVirtualization
+          disableExtendRowFullWidth
         />
       </Box>
 
       <Box
         sx={{
-          height: 400,
+          marginTop : 2,
+          height: 300,
           width: "80%",
           border: "1px solid black",
           "& .super-app-theme--header": {
