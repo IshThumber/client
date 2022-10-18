@@ -151,9 +151,38 @@ export default function StandardEntryForm(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (validate()) {
-      //backend Logic...........
-      addOrEdit(values, resetForm);
+      console.log("Tum jo aye");
+      try {
+        const isStandardAdded = await fetch("http://localhost:5050/auth/addClass", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: values.name,
+            contactNo: values.contactNo,
+            standard: values.standard,
+            teacherId: values.teacherId,
+            password: values.password,
+          }),
+        });
+
+        const res = await isStandardAdded.json();
+        console.log(res);
+        if (res.isStandardAdded) {
+          window.alert(res.message);
+          resetForm();
+        }
+        else {
+          window.alert(res.message);
+        }
+
+      } catch (err) {
+        console.log(err);
+      }
+      console.log(values);
     }
   };
 
