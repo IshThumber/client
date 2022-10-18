@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
 import { Box } from "@mui/material";
 import { FaEdit } from "react-icons/fa";
-import { MdDelete, MdOutlineDragIndicator } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 import StudentEntry from "./StudentEntry/StudentEntry";
-import Button from "../../components/controls/Button";
 import StandardsList from "./StandardsList";
-import { textAlign } from "@mui/system";
 
 //main function start from here...
 

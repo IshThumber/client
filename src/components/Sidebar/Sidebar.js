@@ -119,8 +119,8 @@ const Sidebar = (props) => {
           <DialogContentText>Do you want to Logout ?</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>No</Button>
-          <Button onClick={onLogOut} autoFocus>
+          <Button variant="outlined" onClick={handleClose}>No</Button>
+          <Button variant="contained" onClick={onLogOut} autoFocus>
             Yes
           </Button>
         </DialogActions>

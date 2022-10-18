@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "name": "PRATIK",
+        "studentId": 1,
+        "semester": 1,
+        "subject": "Maths",
+        "formativeAssessment": 40,
+        "semesterAssessment": 40,
+        "selfAssessment": 20
+    },
+    {
+        "id": 2,
+        "name": "DHRUVIN",
+        "studentId": 2,
+        "semester": 1,
+        "subject": "Maths",
+        "formativeAssessment": 40,
+        "semesterAssessment": 40,
+        "selfAssessment": 20
+    },
+    {
+        "id": 3,
+        "name": "ISH",
+        "studentId": 3,
+        "semester": 1,
+        "subject": "Maths",
+        "formativeAssessment": 40,
+        "semesterAssessment": 40,
+        "selfAssessment": 20
+    },
+    {
+        "id": 4,
+        "name": "KETAN",
+        "studentId": 4,
+        "semester": 1,
+        "subject": "Maths",
+        "formativeAssessment": 40,
+        "semesterAssessment": 40,
+        "selfAssessment": 20
+    },
+    {
+        "id": 5,
+        "name": "KETAN",
+        "studentId": 5,
+        "semester": 1,
+        "subject": "Maths",
+        "formativeAssessment": 40,
+        "semesterAssessment": 40,
+        "selfAssessment": 20
+    },
+    {
+        "id": 6,
+        "name": "KETAN",
+        "studentId": 6,
+        "semester": 1,
+        "subject": "Maths",
+        "formativeAssessment": 40,
+        "semesterAssessment": 40,
+        "selfAssessment": 20
+    },
+    {
+        "id": 7,
+        "name": "KETAN",
+        "studentId": 7,
+        "semester": 1,
+        "subject": "Maths",
+        "formativeAssessment": 40,
+        "semesterAssessment": 40,
+        "selfAssessment": 20
+    }
+]
