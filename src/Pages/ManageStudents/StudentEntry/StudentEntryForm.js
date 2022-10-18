@@ -26,6 +26,7 @@ export default function StudentEntryForm(props) {
         useForm(initialFValues);
 
     const validate = () => {
+
         setErrors({
             ...Validation(values),
         });
@@ -33,7 +34,9 @@ export default function StudentEntryForm(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         if (validate()) {
+            console.log('yo');
             try {
                 const isStudentAdded = await fetch(
                     "http://localhost:5050/addStudents",

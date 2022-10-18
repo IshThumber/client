@@ -18,7 +18,6 @@ export default function Validation(values) {
       temp.studentName = "Only Alaphabets are allowed";
     }
   }
-
   //validation for surname
   if (!values.surName) {
     temp.surName = "*Required Field";

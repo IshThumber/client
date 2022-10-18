@@ -69,8 +69,7 @@ const columns = [
     sortable: false,
     width: 160,
     valueGetter: (params) =>
-      `${params.row.surname || ""} ${params.row.studentName || ""} ${
-        params.row.fatherName || ""
+      `${params.row.surname || ""} ${params.row.studentName || ""} ${params.row.fatherName || ""
       } `,
   },
   {
