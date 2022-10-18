@@ -1,7 +1,8 @@
 import { Grid } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { useForm, Form } from "../../../components/useForm";
 import Controls from "../../../components/controls/Controls";
+import { margin } from "@mui/system";
 
 const initialFValues = {
   id: 0,
@@ -9,10 +10,25 @@ const initialFValues = {
   contactNo: "",
   standard: "STD ",
   teacherId: "",
+  password: "",
+  confirmPassword: "",
 };
+
 
 export default function StandardEntryForm(props) {
   const { addOrEdit } = props;
+
+  const [showPass, setShowPass] = useState(true);
+  const toggleBtnPass = () => {
+    setShowPass((prevState) => !prevState);
+  };
+
+
+  const [showConfPass, setShowConfPass] = useState(true);
+  const toggleBtnConfPass = () => {
+    setShowConfPass((prevState) => !prevState);
+  };
+
   const validate = () => {
     let temp = {};
 
@@ -76,6 +92,52 @@ export default function StandardEntryForm(props) {
       temp.teacherId = "";
     }
 
+    // for validation of password
+    if (!values.password) {
+      temp.password = "*Required Field";
+    }
+    else {
+      if (values.password.length >= 8 && values.password.length <= 15) {
+        let paswd = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,15}$/;
+        if (values.password.match(paswd)) {
+          console.log('contain everything');
+        }
+
+        else {
+          temp.password = "Password must contain atleast 1 special character and 1 digit"
+        }
+      }
+      else {
+        temp.password = "Length of Password must betwen 8 an 15"
+      }
+    }
+
+    // for validatin of confirm password
+
+    if (!values.confirmPassword) {
+      temp.password = "*Required Field";
+    }
+    else {
+      if (values.confirmPassword.length >= 8 && values.confirmPassword.length <= 15) {
+        let paswd = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,15}$/;
+        if (values.confirmPassword.match(paswd)) {
+          if (values.confirmPassword !== values.password) {
+            temp.confirmPassword = "Does not match with entered password";
+          }
+          else {
+            temp.confirmPassword = "";
+          }
+        }
+
+        else {
+          temp.confirmPassword = "Confirm Password must contain atleast 1 special character and 1 digit"
+        }
+      }
+      else {
+        temp.confirmPassword = "Length of Confirm Password must betwen 8 an 15"
+      }
+    }
+
     setErrors({
       ...temp,
     });
@@ -85,6 +147,7 @@ export default function StandardEntryForm(props) {
 
   const { values, setValues, errors, setErrors, handleInputChange, resetForm } =
     useForm(initialFValues);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -113,6 +176,24 @@ export default function StandardEntryForm(props) {
             onChange={handleInputChange}
             error={errors.standard}
           />
+          <Controls.Input
+
+            type={showPass ? "password" : "text"}
+            name="password"
+            label="Password"
+            value={values.password}
+            onChange={handleInputChange}
+            error={errors.password}
+          />
+          <input
+            style={{
+              scale: "1.3",
+              transform: "translate(-25px, 20px)",
+            }}
+            type="checkbox"
+            onClick={toggleBtnPass}
+
+          />
         </Grid>
         <Grid item xs={6}>
           <Controls.Input
@@ -131,6 +212,22 @@ export default function StandardEntryForm(props) {
             value={values.teacherId}
             onChange={handleInputChange}
             error={errors.teacherId}
+          />
+          <Controls.Input
+            type={showConfPass ? "password" : "text"}
+            name="confirmPassword"
+            label="Confirm Password"
+            value={values.confirmPassword}
+            onChange={handleInputChange}
+            error={errors.confirmPassword}
+          />
+          <input
+            style={{
+              scale: "1.3",
+              transform: "translate(-25px, 20px)",
+            }}
+            type="checkbox"
+            onClick={toggleBtnConfPass}
           />
         </Grid>
 

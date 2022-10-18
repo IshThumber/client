@@ -13,8 +13,7 @@ export default function Input(props) {
       onChange={onChange}
       {...other}
       {...(error && { error: true, helperText: error })}
-    
-    /> 
+
+    />
   );
 }
- 

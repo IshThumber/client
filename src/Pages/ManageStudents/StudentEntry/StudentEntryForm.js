@@ -43,6 +43,7 @@ export default function StudentEntryForm(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         if (validate()) {
             console.log("Hiii");
             try {
