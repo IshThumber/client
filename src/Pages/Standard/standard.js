@@ -3,6 +3,7 @@ import "./standard.css";
 import { toast } from "react-toastify";
 import StandardMarksTable from "./StandardMarksTable";
 import { logOut } from "./components/logOut";
+import headerStandard from "./headerStandard";
 const examList = [
   { key: 1, value: "exam 1", display: "exam1" },
   { key: 2, value: "exam 2", display: "exam2" },
@@ -62,7 +63,10 @@ function Standard(props) {
           <b>LOG OUT</b>
         </button>
       </div>
+      <div></div>
+      <headerStandard/>
 
+      
       {/* ...........main-container........... */}
 
       <div className="standard-content-container">

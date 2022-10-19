@@ -206,38 +206,41 @@ export default function StandardMarksTable() {
   ];
 
   return (
-    <Box
-      sx={{
-        height: 400,
-        width: "80%",
-        "& .actions": {
-          color: "red",
-        },
-        "& .textPrimary": {
-          color: "black",
-        },
-        "& .super-app-theme--header": {
-          color: "#ffffff",
-          backgroundColor: "#346f82",
-        },
-      }}
-    >
-      <DataGrid
-        pageSize={5}
-        rowsPerPageOptions={[5]} //table pagination
-        rows={rows}
-        columns={columns}
-        editMode="row"
-        rowModesModel={rowModesModel}
-        onRowModesModelChange={(newModel) => setRowModesModel(newModel)}
-        onRowEditStart={handleRowEditStart}
-        onRowEditStop={handleRowEditStop}
-        processRowUpdate={processRowUpdate}
-        componentsProps={{
-          toolbar: { setRows, setRowModesModel },
+    <>
+    
+      <Box
+        sx={{
+          height: 400,
+          width: "80%",
+          "& .actions": {
+            color: "red",
+          },
+          "& .textPrimary": {
+            color: "black",
+          },
+          "& .super-app-theme--header": {
+            color: "#ffffff",
+            backgroundColor: "#346f82",
+          },
         }}
-        experimentalFeatures={{ newEditingApi: true }}
-      />
-    </Box>
+      >
+        <DataGrid
+          pageSize={5}
+          rowsPerPageOptions={[5]} //table pagination
+          rows={rows}
+          columns={columns}
+          editMode="row"
+          rowModesModel={rowModesModel}
+          onRowModesModelChange={(newModel) => setRowModesModel(newModel)}
+          onRowEditStart={handleRowEditStart}
+          onRowEditStop={handleRowEditStop}
+          processRowUpdate={processRowUpdate}
+          componentsProps={{
+            toolbar: { setRows, setRowModesModel },
+          }}
+          experimentalFeatures={{ newEditingApi: true }}
+        />
+      </Box>
+    </>
   );
 }
