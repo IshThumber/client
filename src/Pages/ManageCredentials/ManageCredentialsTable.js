@@ -11,13 +11,42 @@ let CredentialsData;
 const handleEditClick = (id) => () => {
   var da = CredentialsData.find((std) => std.id === id);
   alert(`Edit ${da.standard}`);
+
+  let singleStandardData;
+  CredentialsData.forEach((index) => {
+    if (index.id == id) {
+      singleStandardData = index;
+    }
+  });
+  console.log(singleStandardData);
 };
 
 //handler for the delete in class details
-const handleDeleteClick = (id) => () => {
+const handleDeleteClick = (id) => async () => {
   var da = CredentialsData.find((std) => std.id === id);
   alert(`delete ${da.standard}`);
   //logic here.............//
+
+  try {
+    const isDeleted = await fetch(
+      `http://localhost:5050/deleteTeachers/${sessionStorage.getItem("schoolId")}/${id}`,
+      {
+        method: "PUT",
+      }
+    );
+
+    const res = await isDeleted.json();
+    if (res.message) {
+      window.alert("Teacher Deleted Successfully");
+      window.location.reload();
+      // getTeacherData();
+    } else {
+      window.alert("Teacher Not Deleted");
+    }
+  } catch (err) {
+    console.error(err);
+  }
+
 };
 
 //represent columns of table
@@ -100,7 +129,8 @@ export default function ManageCredentialTable(props) {
       const teachers = await fetch(
         `http://localhost:5050/showTeachers/${sessionStorage.getItem(
           "schoolId"
-        )}`
+        )
+        }`
       )
         .then((response) => {
           if (response.ok) {
@@ -120,7 +150,7 @@ export default function ManageCredentialTable(props) {
 
   return (
     <div>
-      <StandardEntry/>
+      <StandardEntry />
       <Box
         sx={{
           height: 400,
