@@ -1,15 +1,23 @@
-.resultFrontMain {
+* {
+    box-sizing: border-box;
+}
+
+.resultFrontMainWrap {
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    max-width: 850px;
+    border-radius: 6px;
     margin-top: 50px;
+    margin-bottom: 100px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.resultFrontMain {
+
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 20px 15px 40px 15px;
-    max-width: 850px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-    border-radius: 6px;
-    margin-bottom: 100px;
+    padding: 20px 15px 50px 15px;
 }
 
 .resultFrontClassDetail {
@@ -95,15 +103,38 @@
     margin-left: 10px;
 }
 
-.margin-top10 {
+.mt10 {
     margin-top: 10px;
 }
 
-.margin-top15 {
+.mt15 {
     margin-top: 15px;
+}
+
+.mt25 {
+    margin-top: 25px;
 }
 
 
 .resultFrontAddressLine2 {
     margin-left: 8.6%;
+}
+
+.resultFrontBtnPrint {
+    margin-top: 20px;
+    margin-left: 20px;
+    padding: 10px 15px;
+    border: 0;
+    background-color: #00acee;
+    color: white;
+    font-size: 15px;
+    border-radius: 4px;
+    transition: all 0.15s;
+}
+
+.resultFrontBtnPrint:hover {
+    color: #00acee;
+    background-color: white;
+    border: 1px solid #00acee;
+    cursor: pointer;
 }
