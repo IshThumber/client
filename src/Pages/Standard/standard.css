@@ -6,8 +6,8 @@
   background-color: aqua;
 }
 .standard-content-container {
-  margin-left: 40px;
-  
+  margin-left: 100px;
+  margin-top: 100px;
 }
 
 .standard-logout-button {

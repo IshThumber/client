@@ -13,11 +13,11 @@ function Login(props) {
         password: "",
     });
     //for changing state of passwird toggle
-    const [state, setState] = useState(true);
+    const [passwordVisible, setPasswordVisible] = useState(true);
 
     //for toggle button
     const toggleBtn = () => {
-        setState((prevState) => !prevState);
+        setPasswordVisible((prevState) => !prevState);
     };
 
     // Handle Input
@@ -109,7 +109,7 @@ function Login(props) {
                         <div className="input-container">
                             {/* <label htmlFor="password">Password</label> */}
                             <input
-                                type={state ? "password" : "text"}
+                                type={passwordVisible ? "password" : "text"}
                                 name="password"
                                 id="password"
                                 placeholder="Password"
@@ -118,7 +118,7 @@ function Login(props) {
                             />
 
                             <i onClick={toggleBtn}>
-                                {state ? <AiFillEye /> : <AiFillEyeInvisible />}
+                                {passwordVisible ? <AiFillEye /> : <AiFillEyeInvisible />}
                             </i>
                         </div>
                         <button type="submit" className="btn-sub">
