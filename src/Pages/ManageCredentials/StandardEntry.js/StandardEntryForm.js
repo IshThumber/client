@@ -100,7 +100,7 @@ export default function StandardEntryForm(props) {
       if (values.password.length >= 8 && values.password.length <= 15) {
         let paswd = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,15}$/;
         if (values.password.match(paswd)) {
-          console.log('contain everything');
+          // console.log('contain everything');
         }
 
         else {
@@ -155,22 +155,27 @@ export default function StandardEntryForm(props) {
     if (validate()) {
       console.log("Tum jo aye");
       try {
-        const isStandardAdded = await fetch("http://localhost:5050/auth/addClass", {
+        const isStandardAdded = await fetch("http://localhost:5050/auth/addClass/", 
+        {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            schoolId: sessionStorage.getItem("schoolId"),
+            year: new Date().getFullYear(),
             name: values.name,
             contactNo: values.contactNo,
             standard: values.standard,
-            teacherId: values.teacherId,
+            userName: parseInt(values.teacherId),
             password: values.password,
           }),
         });
 
         const res = await isStandardAdded.json();
+
         console.log(res);
+
         if (res.isStandardAdded) {
           window.alert(res.message);
           resetForm();
