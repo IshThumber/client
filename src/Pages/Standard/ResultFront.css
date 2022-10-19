@@ -1,0 +1,109 @@
+.resultFrontMain {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 15px 40px 15px;
+    max-width: 850px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    margin-bottom: 100px;
+}
+
+.resultFrontClassDetail {
+    display: flex;
+    flex-direction: column;
+}
+
+.resultFrontHeader {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 15px;
+    font-size: 25px;
+}
+
+.reportFrontStandardDetails {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.reportFrontAcademicYear {
+    display: flex;
+    justify-content: center;
+}
+
+.resultFrontSchoolAddr {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.resultFrontNameInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.resultFrontId {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.resultFrontPersonalInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.flex-2 {
+    flex: 2;
+}
+
+.resultFrontFlexContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.resultFrontSpanTitle {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.resultFrontSpanTitleNameInfo {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.resutlFrontData {
+    display: inline;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 500;
+    border-bottom: 1px solid black;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.margin-top10 {
+    margin-top: 10px;
+}
+
+.margin-top15 {
+    margin-top: 15px;
+}
+
+
+.resultFrontAddressLine2 {
+    margin-left: 8.6%;
+}

@@ -3,10 +3,13 @@ import "./standard.css";
 import { toast } from "react-toastify";
 import StandardMarksTable from "./StandardMarksTable";
 import { logOut } from "./components/logOut";
+import Result from "./Result.js"
+import ResultFront from "./ResultFront";
 const examList = [
   { key: 1, value: "exam 1", display: "exam1" },
   { key: 2, value: "exam 2", display: "exam2" },
 ];
+
 
 const subjectList = [
   {
@@ -22,6 +25,7 @@ const subjectList = [
 ];
 
 function Standard(props) {
+
   //hook for handle exam...
   const [exam, setExam] = useState("0");
   const [subject, setSubject] = useState("0");
@@ -31,6 +35,7 @@ function Standard(props) {
     var a = document.getElementById("exam");
     setExam(a.value);
   }
+
 
   function handlesubject() {
     var s = document.getElementById("subject");
@@ -109,6 +114,14 @@ function Standard(props) {
         </div>
         <StandardMarksTable />
       </div>
+
+      {/* result module  */}
+
+      {/* <ResultFront /> */}
+
+      {/* <Result /> */}
+
+
     </>
   );
 }
