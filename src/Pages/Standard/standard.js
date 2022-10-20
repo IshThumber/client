@@ -4,97 +4,379 @@ import StandardMarksTable from "./StandardMarksTable";
 import Result from "./Result/Result";
 import ResultFront from "./Result/ResultFront";
 import HeaderStandard from "./components/HeaderStandard";
+import Box from "@mui/material/Box";
+import { FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import { FaSave } from "react-icons/fa";
+import { MdCancel } from "react-icons/md";
+import { MdDownloadForOffline } from "react-icons/md";
+import {
+    DataGrid,
+    GridActionsCellItem,
+    GridRowModes,
+    GridToolbar,
+    GridToolbarContainer,
+} from "@mui/x-data-grid";
 const examList = [
-  { key: 1, value: "exam 1", display: "exam1" },
-  { key: 2, value: "exam 2", display: "exam2" },
+    { key: 1, value: "exam 1", display: "exam1" },
+    { key: 2, value: "exam 2", display: "exam2" },
 ];
 
 const subjectList = [
-  {
-    key: 1,
-    value: "science",
-    display: "science",
-  },
-  {
-    key: 2,
-    value: "maths",
-    display: "maths",
-  },
+    {
+        key: 1,
+        value: "Gujarati",
+        display: "Gujarati",
+    },
+    {
+        key: 2,
+        value: "English",
+        display: "English",
+    },
 ];
 
 function Standard(props) {
-  //hook for handle exam...
-  const [exam, setExam] = useState("0");
-  const [subject, setSubject] = useState("0");
+    let standardWiseData;
 
-  //handler for exam
-  function handleexam() {
-    var a = document.getElementById("exam");
-    setExam(a.value);
-  }
+    //hook for handle exam...
+    const [exam, setExam] = useState("0");
+    const [subject, setSubject] = useState("0");
 
-  function handlesubject() {
-    var s = document.getElementById("subject");
-    setSubject(s.value);
-  }
+    useEffect(() => {
+        if (subject != 0 && exam != 0) {
+            async function studentsData() {
+                console.log("In");
+                let year = 2022;
+                let std = props.standard;
+                let ob = await fetch(
+                    `http://localhost:5050/getStandardData/${sessionStorage.getItem(
+                        "schoolId"
+                    )}/${year}/${std}/${exam.substring(5, 6)}/${subject}`
+                )
+                    .then((response) => {
+                        if (response.ok) {
+                            return response.json();
+                        }
+                    })
+                    .catch((err) => console.error(err));
+                if (!ob.message) {
+                    console.log(ob);
+                    standardWiseData = ob;
+                    for (let i = 0; i < standardWiseData.length - 1; i++) {
+                        for (
+                            let j = 0;
+                            j < standardWiseData.length - i - 1;
+                            j++
+                        ) {
+                            if (
+                                standardWiseData[j].studentId >
+                                standardWiseData[j + 1].studentId
+                            ) {
+                                let temp = standardWiseData[j];
+                                standardWiseData[j] = standardWiseData[j + 1];
+                                standardWiseData[j + 1] = temp;
+                            }
+                        }
+                    }
+                    console.log(standardWiseData);
+                    setRows(standardWiseData);
+                } else {
+                    standardWiseData = [];
+                    console.log(standardWiseData);
+                    setRows(standardWiseData);
+                }
+            }
+            // console.log();
+            // console.log(exam);
+            studentsData();
+            console.log(standardWiseData);
+        }
+    }, [exam, subject]);
 
-  const [standard] = useState(props.standard);
-  return (
-    <>
-      <HeaderStandard {...props} />
+    //handler for exam
+    function handleexam() {
+        var a = document.getElementById("exam");
+        setExam(a.value);
+    }
 
-      {/* ...........main-container........... */}
+    function handlesubject() {
+        var s = document.getElementById("subject");
+        setSubject(s.value);
+    }
 
-      <div className="standard-content-container">
-        {/* .......drop down for exam selection........*/}
-        <div style={{ margin: 5 }} className="drop-down-exam-standard">
-          <label>Choose a exam : </label>
+    const [standard] = useState(props.standard);
 
-          <select
-            style={{ padding: 10 }}
-            onChange={handleexam}
-            name="exam"
-            id="exam"
-          >
-            <option value="None">None</option>
+    const [rows, setRows] = React.useState([]);
+    const [rowModesModel, setRowModesModel] = React.useState({});
 
-            {examList.map((v) => (
-              <option key={v.key} value={v.value}>
-                {v.display}
-              </option>
-            ))}
-          </select>
-        </div>
+    const handleDownloadClick = (id) => () => {
+        alert(id);
+    };
 
-        {/* .......drop down for subject selection........*/}
+    const handleRowEditStart = (params, event) => {
+        event.defaultMuiPrevented = true;
+    };
 
-        <div style={{ margin: 5 }} className="drop-down-subject-standard">
-          <label>Choose a subject : </label>
+    const handleRowEditStop = (params, event) => {
+        event.defaultMuiPrevented = true;
+    };
 
-          <select
-            style={{ padding: 10 }}
-            onChange={handlesubject}
-            name="subject"
-            id="subject"
-          >
-            <option value="None">None</option>
+    const handleEditClick = (id) => () => {
+        setRowModesModel({
+            ...rowModesModel,
+            [id]: { mode: GridRowModes.Edit },
+        });
+    };
 
-            {subjectList.map((v) => (
-              <option key={v.key} value={v.value}>
-                {v.display}
-              </option>
-            ))}
-          </select>
-        </div>
-        <StandardMarksTable />
-      </div>
+    const handleSaveClick = (id) => () => {
+        setRowModesModel({
+            ...rowModesModel,
+            [id]: { mode: GridRowModes.View },
+        });
+    };
 
-      {/* result module  */}
+    const handleDeleteClick = (id) => () => {
+        setRows(rows.filter((row) => row.id !== id));
+    };
 
-      <ResultFront />
+    const handleCancelClick = (id) => () => {
+        setRowModesModel({
+            ...rowModesModel,
+            [id]: { mode: GridRowModes.View, ignoreModifications: true },
+        });
 
-      {/* <Result /> */}
-    </>
-  );
+        const editedRow = rows.find((row) => row.id === id);
+        if (editedRow.isNew) {
+            setRows(rows.filter((row) => row.id !== id));
+        }
+    };
+
+    const processRowUpdate = (newRow) => {
+        const updatedRow = { ...newRow, isNew: false };
+        setRows(rows.map((row) => (row.id === newRow.id ? updatedRow : row)));
+        return updatedRow;
+    };
+
+    const columns = [
+        {
+            field: "studentId",
+            headerName: "Student Id",
+            width: 120,
+            align: "center",
+            headerClassName: "super-app-theme--header",
+            headerAlign: "center",
+        },
+        {
+            field: "fullName",
+            headerName: "Student Name",
+            width: 120,
+            align: "center",
+            headerClassName: "super-app-theme--header",
+            headerAlign: "center",
+            valueGetter: (params) =>
+                `${params.row.surname || ""} ${params.row.studentName || ""} ${
+                    params.row.fatherName || ""
+                } `,
+        },
+        {
+            field: "formativeAssessment",
+            headerName: "Formative Assessment",
+            width: 200,
+            type: "number",
+            align: "center",
+            headerClassName: "super-app-theme--header",
+            headerAlign: "center",
+            editable: true,
+        },
+        {
+            field: "semesterAssessment",
+            headerName: "Semester Assessment",
+            width: 200,
+            type: "number",
+            align: "center",
+            headerClassName: "super-app-theme--header",
+            headerAlign: "center",
+            editable: true,
+        },
+        {
+            field: "selfAssessment",
+            headerName: "Self Assessment",
+            width: 200,
+            type: "number",
+            align: "center",
+            headerClassName: "super-app-theme--header",
+            headerAlign: "center",
+            editable: true,
+        },
+        {
+            field: "actions",
+            type: "actions",
+            headerName: "Actions",
+            width: 140,
+            align: "center",
+            headerClassName: "super-app-theme--header",
+            headerAlign: "center",
+            cellClassName: "actions",
+            getActions: ({ id }) => {
+                const isInEditMode =
+                    rowModesModel[id]?.mode === GridRowModes.Edit;
+                if (isInEditMode) {
+                    return [
+                        <GridActionsCellItem
+                            icon={
+                                <FaSave
+                                    style={{ fontSize: 20, color: "black" }}
+                                />
+                            }
+                            label="Save"
+                            onClick={handleSaveClick(id)}
+                        />,
+                        <GridActionsCellItem
+                            icon={<MdCancel style={{ fontSize: 20 }} />}
+                            label="Cancel"
+                            className="textPrimary"
+                            onClick={handleCancelClick(id)}
+                            color="inherit"
+                        />,
+                    ];
+                }
+
+                return [
+                    <GridActionsCellItem
+                        icon={<FaEdit style={{ fontSize: 15 }} />}
+                        label="Edit"
+                        className="textPrimary"
+                        onClick={handleEditClick(id)}
+                        color="inherit"
+                    />,
+                    <GridActionsCellItem
+                        icon={<MdDelete style={{ fontSize: 15 }} />}
+                        label="Delete"
+                        onClick={handleDeleteClick(id)}
+                        color="inherit"
+                    />,
+                ];
+            },
+        },
+        {
+            field: "Download",
+            align: "center",
+            headerClassName: "super-app-theme--header",
+            headerAlign: "center",
+            type: "actions",
+            headerName: "Download",
+            width: 100,
+            size: "100%",
+            cellClassName: "actions",
+            getActions: ({ id }) => {
+                return [
+                    <GridActionsCellItem
+                        icon={<MdDownloadForOffline style={{ fontSize: 20 }} />}
+                        label="Edit"
+                        className="textPrimary"
+                        onClick={handleDownloadClick(id)}
+                        color="inherit"
+                    />,
+                ];
+            },
+        },
+    ];
+
+    return (
+        <>
+            <HeaderStandard {...props} />
+
+            {/* ...........main-container........... */}
+
+            <div className="standard-content-container">
+                {/* .......drop down for exam selection........*/}
+                <div style={{ margin: 5 }} className="drop-down-exam-standard">
+                    <label>Choose a exam : </label>
+
+                    <select
+                        style={{ padding: 10 }}
+                        onChange={handleexam}
+                        name="exam"
+                        id="exam"
+                    >
+                        <option value="None">None</option>
+
+                        {examList.map((v) => (
+                            <option key={v.key} value={v.value}>
+                                {v.display}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+
+                {/* .......drop down for subject selection........*/}
+
+                <div
+                    style={{ margin: 5 }}
+                    className="drop-down-subject-standard"
+                >
+                    <label>Choose a subject : </label>
+
+                    <select
+                        style={{ padding: 10 }}
+                        onChange={handlesubject}
+                        name="subject"
+                        id="subject"
+                    >
+                        <option value="None">None</option>
+
+                        {subjectList.map((v) => (
+                            <option key={v.key} value={v.value}>
+                                {v.display}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <>
+                    <Box
+                        sx={{
+                            height: 400,
+                            width: "80%",
+                            "& .actions": {
+                                color: "red",
+                            },
+                            "& .textPrimary": {
+                                color: "black",
+                            },
+                            "& .super-app-theme--header": {
+                                color: "#ffffff",
+                                backgroundColor: "#346f82",
+                            },
+                        }}
+                    >
+                        <DataGrid
+                            pageSize={5}
+                            rowsPerPageOptions={[5]} //table pagination
+                            rows={rows}
+                            columns={columns}
+                            editMode="row"
+                            rowModesModel={rowModesModel}
+                            onRowModesModelChange={(newModel) =>
+                                setRowModesModel(newModel)
+                            }
+                            onRowEditStart={handleRowEditStart}
+                            onRowEditStop={handleRowEditStop}
+                            processRowUpdate={processRowUpdate}
+                            componentsProps={{
+                                toolbar: { setRows, setRowModesModel },
+                            }}
+                            experimentalFeatures={{ newEditingApi: true }}
+                        />
+                    </Box>
+                </>
+            </div>
+
+            {/* result module  */}
+
+            <ResultFront />
+
+            {/* <Result /> */}
+        </>
+    );
 }
 export default Standard;
