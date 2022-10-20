@@ -78,18 +78,14 @@ function Standard(props) {
                             }
                         }
                     }
-                    console.log(standardWiseData);
                     setRows(standardWiseData);
                 } else {
+                    window.alert(ob.message);
                     standardWiseData = [];
-                    console.log(standardWiseData);
                     setRows(standardWiseData);
                 }
             }
-            // console.log();
-            // console.log(exam);
             studentsData();
-            console.log(standardWiseData);
         }
     }, [exam, subject]);
 
@@ -128,7 +124,7 @@ function Standard(props) {
         });
     };
 
-    const handleSaveClick = (id) => () => {
+    const handleSaveClick = (id) => async () => {
         setRowModesModel({
             ...rowModesModel,
             [id]: { mode: GridRowModes.View },
@@ -151,7 +147,24 @@ function Standard(props) {
         }
     };
 
-    const processRowUpdate = (newRow) => {
+    const processRowUpdate = async (newRow) => {
+        try {
+            const isSaved = await fetch(
+                `http://localhost:5050/saveMarks/${newRow.id}/${newRow.formativeAssessment}/${newRow.semesterAssessment}/${newRow.selfAssessment}`,
+                {
+                    method: "PUT",
+                }
+            );
+
+            const res = await isSaved.json();
+            if (res.isSaved) {
+                console.log("Marks Saved");
+            } else {
+                window.alert(res.message);
+            }
+        } catch (err) {
+            console.error(err.message);
+        }
         const updatedRow = { ...newRow, isNew: false };
         setRows(rows.map((row) => (row.id === newRow.id ? updatedRow : row)));
         return updatedRow;
