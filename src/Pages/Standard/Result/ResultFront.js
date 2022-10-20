@@ -1,22 +1,22 @@
 import React, { useRef } from "react";
 import "./ResultFront.css";
-import ReactToPrint from 'react-to-print'
+import ReactToPrint from "react-to-print";
 
 const data = {
-  standard: 1,
-  division: "A",
+  standard: 3,
+  division: "-",
   schoolName: "Kanya Shala Khergam",
   taluka: "Khergam",
   district: "Khergam",
   surName: "Thumber",
   studentName: "Isha",
-  fatherName: "fatherbhai",
-  motherName: "motherben",
+  fatherName: "KetanKumar",
+  motherName: "Ketkiben",
   grNumber: 12123,
   uidNumber: 123232131312333,
   birthDate: "12/12/2012",
   phoneNumber: 989898989912,
-  address: "moon, near earth",
+  address: "23, chikhali road khergam , Navsari",
 };
 export default function ResultFront() {
   const componentRef = useRef();
@@ -24,11 +24,12 @@ export default function ResultFront() {
   return (
     <>
       <ReactToPrint
-        trigger={() => <button className="resultFrontBtnPrint">Print/Download</button>}
+        trigger={() => (
+          <button className="resultFrontBtnPrint">Print/Download</button>
+        )}
         content={() => componentRef.current}
       />
       <div className="resultFrontMainWrap">
-
         <main className="resultFrontMain" ref={componentRef}>
           {/* header */}
           <header className="resultFrontHeader">
@@ -106,11 +107,15 @@ export default function ResultFront() {
             </div>
             <div className="mt15 resultFrontFlexContainer flex-1">
               <span className="resultFrontSpanTitle">Father's Name:</span>
-              <p className="resutlFrontData flex-1">{data.fatherName}</p>
+              <p className="resutlFrontData flex-1">
+                {data.surName}&nbsp;{data.fatherName}
+              </p>
             </div>
             <div className="mt15 resultFrontFlexContainer flex-1">
               <span className="resultFrontSpanTitle">Mother's Name:</span>
-              <p className="resutlFrontData flex-1">{data.motherName}</p>
+              <p className="resutlFrontData flex-1">
+                {data.surName}&nbsp;{data.motherName}
+              </p>
             </div>
             <div className="resultFrontId">
               <div className="mt15 resultFrontFlexContainer flex-1">

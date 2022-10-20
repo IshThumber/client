@@ -22,7 +22,7 @@ export default function Result() {
                             <span className='spanTitle '>
                                 Standard:
                             </span>
-                            <p className='data flex-1'>&nbsp;</p>
+                            <p className='data flex-1'>3</p>
                         </div>
 
                         <div className=' flex-1 flexContainer'>
@@ -30,7 +30,7 @@ export default function Result() {
                                 Result Number:
                             </span>
                             <p className='data flex-1'>
-                                &nbsp;
+                                32
                             </p>
                         </div>
 
@@ -38,7 +38,7 @@ export default function Result() {
                             <span className='spanTitle'>
                                 Total attendence:
                             </span><p className='flex-1 data'>
-                                &nbsp;
+                               76
                             </p>
                         </div>
                     </div>
@@ -62,43 +62,43 @@ export default function Result() {
                                 <tr>
                                     <td>1.</td>
                                     <td>Gujarati</td>
-                                    <td></td>
+                                    <td>A</td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td>2.</td>
                                     <td>Maths</td>
-                                    <td></td>
+                                    <td>A</td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td>3.</td>
                                     <td>Environment</td>
-                                    <td></td>
+                                    <td>B</td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td>3.</td>
                                     <td>Hindi</td>
-                                    <td></td>
+                                    <td>A</td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td>4.</td>
                                     <td>English</td>
-                                    <td></td>
+                                    <td>A</td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td>5.</td>
                                     <td>Personal Development</td>
-                                    <td></td>
+                                    <td>A</td>
                                     <td></td>
                                 </tr>
                                 <tr rowspan="2">
                                     <td></td>
                                     <td style={{ textAlign: 'center' }}>Obtain Grades</td>
-                                    <td></td>
+                                    <td>A</td>
                                     <td></td>
                                 </tr>
                             </tbody>
@@ -112,7 +112,7 @@ export default function Result() {
                     <div>
                         <div>
                             <div className='gaurdianDetail'>
-                                <div className='flexContainer flex-1'><span className='spanTitle'>Place:</span><p className='data flex-1'>&nbsp;</p></div>
+                                <div className='flexContainer flex-1'><span className='spanTitle'>Place:</span><p className='data flex-1'>Khergam</p></div>
                                 <div className=" flex-1 flexContainer"><span className="spanTitle ">Gaurdian's signature:</span><p className='flex-1 dataGuardian'>&nbsp;</p></div>
                             </div>
                             <div className='flexContainer resultDate'><span className='spanTitle'>Date:</span><p className='data flex-1' >&nbsp;</p></div>

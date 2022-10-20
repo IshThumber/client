@@ -1,14 +1,9 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import { HiUserAdd } from "react-icons/hi";
 import { FaEdit } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
 import { FaSave } from "react-icons/fa";
 import { MdCancel } from "react-icons/md";
 import { MdDownloadForOffline } from "react-icons/md";
-import data from "./data.json";
 import {
     DataGrid,
     GridActionsCellItem,
@@ -78,9 +73,9 @@ export default function StandardMarksTable(props) {
         });
     };
 
-    const handleDeleteClick = (id) => () => {
-        setRows(rows.filter((row) => row.id !== id));
-    };
+    // const handleDeleteClick = (id) => () => {
+    //     setRows(rows.filter((row) => row.id !== id));
+    // };
 
     const handleCancelClick = (id) => () => {
         setRowModesModel({
@@ -188,12 +183,12 @@ export default function StandardMarksTable(props) {
                         onClick={handleEditClick(id)}
                         color="inherit"
                     />,
-                    <GridActionsCellItem
-                        icon={<MdDelete style={{ fontSize: 15 }} />}
-                        label="Delete"
-                        onClick={handleDeleteClick(id)}
-                        color="inherit"
-                    />,
+                    // <GridActionsCellItem
+                    //     icon={<MdDelete style={{ fontSize: 15 }} />}
+                    //     label="Delete"
+                    //     onClick={handleDeleteClick(id)}
+                    //     color="inherit"
+                    // />,
                 ];
             },
         },
