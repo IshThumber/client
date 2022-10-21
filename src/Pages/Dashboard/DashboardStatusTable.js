@@ -1,6 +1,8 @@
 import { Box } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import React, { useEffect, useState } from "react";
+import Loader from "../../components/Loader";
+import "./Dashboard.css";
 // import StatusData from "./subjectStatus.json";
 
 //represent columns of table
@@ -83,7 +85,7 @@ const columns2 = [
 export default function DashboardStatusTable() {
     const [row1, setRows1] = useState([]); //useState for store rows of table
     const [row2, setRows2] = useState([]); //useState for store rows of table
-
+    const [isRowFetched, setIsRowFetched] = useState(true);
     // async function statusData() {
 
     // let year = 2022;
@@ -112,6 +114,7 @@ export default function DashboardStatusTable() {
         // setRows1(ob1);
         // setRows2(ob2);
         // console.log("Hiiiiii");
+        setIsRowFetched(false);
         async function statusData() {
             console.log("Hi");
             let year = 2022;
@@ -141,67 +144,78 @@ export default function DashboardStatusTable() {
                 );
                 setRows1(ob1);
                 setRows2(ob2);
+                setIsRowFetched(true);
             }
         }
         statusData();
     }, []);
     // statusData();
     return (
-        <div>
-            <Box
-                sx={{
-                    height: 300,
-                    width: "80%",
-                    border: "1px solid black",
-                    "& .super-app-theme--header": {
-                        color: "#ffffff",
-                        backgroundColor: "#346f82",
-                    },
-                }}
-            >
-                <DataGrid
-                    cell--textCenter
-                    rows={row1}
-                    columns={columns1}
-                    pageSize={5}
-                    // rowsPerPageOptions={[5]} //table pagination
-                    components={{ Toolbar: GridToolbar }} //header above the table
-                    disableColumnFilter //remove filter button
-                    disableColumnSelector //to remove column selection
-                    disableDensitySelector //to remove density selection
-                    disableColumnMen
-                    disablrPagination
-                    disableSelectionOnClick
-                    disableVirtualization
-                    disableExtendRowFullWidth
-                />
-            </Box>
+        <>
+            <div>
+                {isRowFetched ? (
+                    <>
+                        <Box
+                            sx={{
+                                height: 300,
+                                width: "80%",
+                                border: "1px solid black",
+                                "& .super-app-theme--header": {
+                                    color: "#ffffff",
+                                    backgroundColor: "#346f82",
+                                },
+                            }}
+                        >
+                            <DataGrid
+                                cell--textCenter
+                                rows={row1}
+                                columns={columns1}
+                                pageSize={5}
+                                // rowsPerPageOptions={[5]} //table pagination
+                                components={{ Toolbar: GridToolbar }} //header above the table
+                                disableColumnFilter //remove filter button
+                                disableColumnSelector //to remove column selection
+                                disableDensitySelector //to remove density selection
+                                disableColumnMen
+                                disablrPagination
+                                disableSelectionOnClick
+                                disableVirtualization
+                                disableExtendRowFullWidth
+                            />
+                        </Box>
 
-            <Box
-                sx={{
-                    marginTop: 2,
-                    height: 300,
-                    width: "80%",
-                    border: "1px solid black",
-                    "& .super-app-theme--header": {
-                        color: "#ffffff",
-                        backgroundColor: "#346f82",
-                    },
-                }}
-            >
-                <DataGrid
-                    cell--textCenter
-                    rows={row2}
-                    columns={columns2}
-                    pageSize={8}
-                    // rowsPerPageOptions={[5]} //table pagination
-                    components={{ Toolbar: GridToolbar }} //header above the table
-                    disableColumnFilter //remove filter button
-                    disableColumnSelector //to remove column selection
-                    disableDensitySelector //to remove density selection
-                    disableColumnMen
-                />
-            </Box>
-        </div>
+                        <Box
+                            sx={{
+                                marginTop: 2,
+                                height: 300,
+                                width: "80%",
+                                border: "1px solid black",
+                                "& .super-app-theme--header": {
+                                    color: "#ffffff",
+                                    backgroundColor: "#346f82",
+                                },
+                            }}
+                        >
+                            <DataGrid
+                                cell--textCenter
+                                rows={row2}
+                                columns={columns2}
+                                pageSize={8}
+                                // rowsPerPageOptions={[5]} //table pagination
+                                components={{ Toolbar: GridToolbar }} //header above the table
+                                disableColumnFilter //remove filter button
+                                disableColumnSelector //to remove column selection
+                                disableDensitySelector //to remove density selection
+                                disableColumnMen
+                            />
+                        </Box>
+                    </>
+                ) : (
+                    <div className="admin-loader-class">
+                        <Loader />
+                    </div>
+                )}
+            </div>
+        </>
     );
 }

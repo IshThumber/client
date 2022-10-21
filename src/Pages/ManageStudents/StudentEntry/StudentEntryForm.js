@@ -32,6 +32,8 @@ export default function StudentEntryForm(props) {
     } = useForm(initialFValues);
 
     const validate = () => {
+        props.handleSubmitLoading(false);
+
         let temp = Validation(values);
         if (typeof temp == "boolean" && temp) {
             setErrors({});
@@ -39,12 +41,14 @@ export default function StudentEntryForm(props) {
         } else {
             setErrors(temp);
         }
+        props.handleSubmitLoading(true);
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         if (validate()) {
+            props.handleSubmitLoading(false);
+
             console.log("Hiii");
             try {
                 const isStudentAdded = await fetch(
@@ -75,10 +79,12 @@ export default function StudentEntryForm(props) {
                     }
                 );
                 const parseRes = await isStudentAdded.json();
+                props.handleSubmitLoading(true);
+
                 console.log(parseRes);
                 if (parseRes.isStudentAdded) {
                     window.alert(parseRes.message);
-                    resetForm();
+                    props.handleCloseAfterSubmit(false);
                 } else {
                     window.alert(parseRes.message);
                 }

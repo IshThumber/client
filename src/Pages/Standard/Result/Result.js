@@ -1,45 +1,31 @@
-import React from 'react'
-import "./Result.css"
+import React from "react";
+import "./Result.css";
 export default function Result() {
     return (
         <>
-            <main className='resultMain'>
+            <main className="resultMain">
                 {/* header starts */}
-                <header className='resultHeader'>
-                    <h1>
-                        Result
-                    </h1>
-
-
-
+                <header className="resultHeader">
+                    <h1>Result</h1>
                 </header>
                 {/* header ends */}
 
                 {/* standard details starts */}
-                <section >
-                    <div className='resultDetailSection'>
-                        <div className='flex-1 flexContainer'>
-                            <span className='spanTitle '>
-                                Standard:
-                            </span>
-                            <p className='data flex-1'>3</p>
+                <section>
+                    <div className="resultDetailSection">
+                        <div className="flex-1 flexContainer">
+                            <span className="spanTitle ">Standard:</span>
+                            <p className="data flex-1">3</p>
                         </div>
 
-                        <div className=' flex-1 flexContainer'>
-                            <span className='spanTitle'>
-                                Result Number:
-                            </span>
-                            <p className='data flex-1'>
-                                32
-                            </p>
+                        <div className=" flex-1 flexContainer">
+                            <span className="spanTitle">Result Number:</span>
+                            <p className="data flex-1">32</p>
                         </div>
 
-                        <div className='flexContainer flex-1'>
-                            <span className='spanTitle'>
-                                Total attendence:
-                            </span><p className='flex-1 data'>
-                               76
-                            </p>
+                        <div className="flexContainer flex-1">
+                            <span className="spanTitle">Total attendence:</span>
+                            <p className="flex-1 data">76</p>
                         </div>
                     </div>
                 </section>
@@ -47,9 +33,8 @@ export default function Result() {
 
                 {/* marks details starts  */}
                 <section>
-                    <div className='resultTable'>
+                    <div className="resultTable">
                         <table>
-
                             <thead>
                                 <tr>
                                     <th>Sr.</th>
@@ -95,9 +80,11 @@ export default function Result() {
                                     <td>A</td>
                                     <td></td>
                                 </tr>
-                                <tr rowspan="2">
+                                <tr rowSpan="2">
                                     <td></td>
-                                    <td style={{ textAlign: 'center' }}>Obtain Grades</td>
+                                    <td style={{ textAlign: "center" }}>
+                                        Obtain Grades
+                                    </td>
                                     <td>A</td>
                                     <td></td>
                                 </tr>
@@ -107,25 +94,44 @@ export default function Result() {
                 </section>
                 {/* marks details end  */}
 
-
                 <footer>
                     <div>
                         <div>
-                            <div className='gaurdianDetail'>
-                                <div className='flexContainer flex-1'><span className='spanTitle'>Place:</span><p className='data flex-1'>Khergam</p></div>
-                                <div className=" flex-1 flexContainer"><span className="spanTitle ">Gaurdian's signature:</span><p className='flex-1 dataGuardian'>&nbsp;</p></div>
+                            <div className="gaurdianDetail">
+                                <div className="flexContainer flex-1">
+                                    <span className="spanTitle">Place:</span>
+                                    <p className="data flex-1">Khergam</p>
+                                </div>
+                                <div className=" flex-1 flexContainer">
+                                    <span className="spanTitle ">
+                                        Gaurdian's signature:
+                                    </span>
+                                    <p className="flex-1 dataGuardian">
+                                        &nbsp;
+                                    </p>
+                                </div>
                             </div>
-                            <div className='flexContainer resultDate'><span className='spanTitle'>Date:</span><p className='data flex-1' >&nbsp;</p></div>
+                            <div className="flexContainer resultDate">
+                                <span className="spanTitle">Date:</span>
+                                <p className="data flex-1">&nbsp;</p>
+                            </div>
 
-                            <div className='teachersDetail'>
-                                <div><span className='spanTitle signature'>Teacher's Signature</span></div>
-                                <div><span className='spanTitle signature'>Principal's Signature</span></div>
+                            <div className="teachersDetail">
+                                <div>
+                                    <span className="spanTitle signature">
+                                        Teacher's Signature
+                                    </span>
+                                </div>
+                                <div>
+                                    <span className="spanTitle signature">
+                                        Principal's Signature
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </footer>
-
             </main>
         </>
-    )
+    );
 }

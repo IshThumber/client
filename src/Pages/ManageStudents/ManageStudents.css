@@ -1,18 +1,17 @@
 .Header {
-  background-color: #2b3d53;
-  height: 72px;
-  width: 100%;
-  margin: 0;
+    background-color: #2b3d53;
+    height: 72px;
+    width: 100%;
+    margin: 0;
 }
 
 .Content-container {
-  padding-left: 20px;
-  margin-left: 270px;
-  margin-top: 30px;
-  transform: translateY(8%);
+    padding-left: 20px;
+    margin-left: 270px;
+    margin-top: 70px;
 }
 
 .drop-down-standard-manageStudent {
-  border: 1px solid #ccc;
-  transform: translateY(100%);
+    border: 1px solid #ccc;
+    transform: translateY(100%);
 }

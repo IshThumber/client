@@ -1,0 +1,7 @@
+.admin-loader-class {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(330px);
+    margin-left: -270px;
+}

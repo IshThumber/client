@@ -1,9 +1,10 @@
 import React, { Component, useState } from "react";
 import Controls from "../../../components/controls/Controls";
+import Loader from "../../../components/Loader";
 
 export default function StudentEntry(props) {
     const [state, setstate] = useState({});
-
+    const [isUploaded, setIsUploaded] = useState(true);
     // On file select (from the pop up)
     function onFileChange(event) {
         // Update the state
@@ -14,6 +15,7 @@ export default function StudentEntry(props) {
     // On file upload (click the upload button)
     async function onFileUpload(event) {
         // Create an object of formData
+        setIsUploaded(false);
         const formData = new FormData();
 
         // Update the formData object
@@ -34,11 +36,14 @@ export default function StudentEntry(props) {
                 }
             );
 
+            setIsUploaded(true);
             const parseRes = await isUploaded.json();
             if (parseRes.isStudentAdded) {
                 window.alert("Successfully submitted");
+                props.handleClosePopupAfterUpload(false);
             } else {
                 window.alert("Empty File");
+                props.handleClosePopupAfterUpload(false);
             }
         } catch (err) {
             console.error(err.message);
@@ -60,12 +65,24 @@ export default function StudentEntry(props) {
 
                         <p>File Name: {state.selectedFile.name}</p>
                     </div>
-                    <Controls.Button
-                        sx={{ margin: 2, backgroundColor: "#106375" }}
-                        text="Upload File"
-                        type="submit"
-                        onClick={onFileUpload}
-                    />
+                    {isUploaded ? (
+                        <Controls.Button
+                            sx={{ margin: 2, backgroundColor: "#106375" }}
+                            text="Upload File"
+                            type="submit"
+                            onClick={onFileUpload}
+                        />
+                    ) : (
+                        <div
+                            style={{
+                                justifyContent: "center",
+                                display: "flex",
+                                marginTop: "10px",
+                            }}
+                        >
+                            <Loader />
+                        </div>
+                    )}
                 </>
             );
         } else if (state.selectedFile) {
@@ -89,7 +106,7 @@ export default function StudentEntry(props) {
         <>
             {/* Upload Button */}
             <Controls.Input
-                sx={{ margin: 2 }}
+                sx={{ marginTop: "-20px" }}
                 type="file"
                 onChange={onFileChange}
             />
