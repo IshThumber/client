@@ -22,6 +22,8 @@ const initialFValues = {
 };
 
 export default function StudentEntryForm(props) {
+    console.log(props.StandardList);
+
     const {
         values,
         setValues,
@@ -51,6 +53,7 @@ export default function StudentEntryForm(props) {
 
             console.log("Hiii");
             try {
+                console.log(values.standard);
                 const isStudentAdded = await fetch(
                     "http://localhost:5050/addStudents/",
                     {
