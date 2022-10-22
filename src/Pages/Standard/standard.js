@@ -105,6 +105,8 @@ function Standard(props) {
         setSubject(s.value);
     }
 
+    const [resultData, setResultData] = useState({});
+
     const [standard] = useState(props.standard);
 
     const [rows, setRows] = React.useState([]);
@@ -118,10 +120,10 @@ function Standard(props) {
             setIsShown(1);
             let year = 2022;
             let sem = "1";
-            const status = await fetch(
-                `http://localhost:5050/dashboard/${sessionStorage.getItem(
+            const data = await fetch(
+                `http://localhost:5050/getStudentWholeData/${sessionStorage.getItem(
                     "schoolId"
-                )}/${year}/${sem}`
+                )}/${id}`
             )
                 .then((res) => {
                     if (res.ok) {
@@ -131,11 +133,17 @@ function Standard(props) {
                 .catch((err) => {
                     console.log(err);
                 });
-
+            if (!data.message) {
+                setResultData(JSON.parse(data));
+                setIsShown(2);
+            } else {
+                window.alert(data.message);
+                setResultData({});
+                setIsShown(0);
+            }
             setPrevId(id);
             console.log("prevId", prevId);
             console.log("id", id);
-            setIsShown(2);
         }
     };
 
@@ -432,7 +440,7 @@ function Standard(props) {
 
             {isShown === 2 ? (
                 <div>
-                    <ResultFront />
+                    <ResultFront resultData={resultData} />
                 </div>
             ) : isShown === 1 ? (
                 <div className="standard-loader-class">

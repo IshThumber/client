@@ -113,7 +113,13 @@ export default function Result() {
                             </div>
                             <div className="flexContainer resultDate">
                                 <span className="spanTitle">Date:</span>
-                                <p className="data flex-1">&nbsp;</p>
+                                <p className="data flex-1">
+                                    {new Date().getDate().toString() +
+                                        " - " +
+                                        new Date().getMonth().toString() +
+                                        " - " +
+                                        new Date().getFullYear().toString()}
+                                </p>
                             </div>
 
                             <div className="teachersDetail">

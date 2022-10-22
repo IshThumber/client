@@ -3,26 +3,29 @@ import "./ResultFront.css";
 import ReactToPrint from "react-to-print";
 import Result from "./Result";
 
-const data = {
-    standard: 3,
-    division: "-",
-    schoolName: "Kanya Shala Khergam",
-    taluka: "Khergam",
-    district: "Khergam",
-    surName: "Thumber",
-    studentName: "Isha",
-    fatherName: "KetanKumar",
-    motherName: "Ketkiben",
-    grNumber: 12123,
-    uidNumber: 123232131312333,
-    birthDate: "12/12/2012",
-    phoneNumber: 989898989912,
-    address: "23, chikhali road khergam , Navsari",
-};
+// const data = {
+//     standard: 3,
+//     division: "-",
+//     schoolName: "Kanya Shala Khergam",
+//     taluka: "Khergam",
+//     district: "Khergam",
+//     surName: "Thumber",
+//     studentName: "Isha",
+//     fatherName: "KetanKumar",
+//     motherName: "Ketkiben",
+//     grNumber: 12123,
+//     uidNumber: 123232131312333,
+//     birthDate: "12/12/2012",
+//     phoneNumber: 989898989912,
+//     address: "23, chikhali road khergam , Navsari",
+// };
 export default function ResultFront(props) {
     const componentRef = useRef();
 
-    return (
+    let data = props.resultData;
+
+    console.log(data);
+    return data ? (
         <>
             <ReactToPrint
                 trigger={() => (
@@ -48,7 +51,9 @@ export default function ResultFront(props) {
                                         Standard:{" "}
                                     </span>{" "}
                                     <p className="resutlFrontData flex-1">
-                                        {data.standard}
+                                        {data.standard
+                                            ? data.standard.substring(4, 5)
+                                            : console.log(false)}
                                     </p>
                                 </div>
                                 <div className="resultFrontFlexContainer flex-1">
@@ -56,7 +61,11 @@ export default function ResultFront(props) {
                                         Division:{" "}
                                     </span>
                                     <p className="resutlFrontData flex-1">
-                                        {data.division}
+                                        {data.standard
+                                            ? data.standard.length > 5
+                                                ? data.standard.substring(5, 6)
+                                                : "-"
+                                            : "-"}
                                     </p>
                                 </div>
                             </div>
@@ -107,7 +116,7 @@ export default function ResultFront(props) {
                         <div className="mt25 resultFrontFlexContainer flex-1">
                             <span className="resultFrontSpanTitle">Name:</span>
                             <p className="resutlFrontData flex-1">
-                                {data.surName}&nbsp;&nbsp;&nbsp;
+                                {data.surname}&nbsp;&nbsp;&nbsp;
                                 {data.studentName}
                                 &nbsp;&nbsp;&nbsp;{data.fatherName}
                             </p>
@@ -142,7 +151,7 @@ export default function ResultFront(props) {
                                 Father's Name:
                             </span>
                             <p className="resutlFrontData flex-1">
-                                {data.surName}&nbsp;{data.fatherName}
+                                {data.surname}&nbsp;{data.fatherName}
                             </p>
                         </div>
                         <div className="mt15 resultFrontFlexContainer flex-1">
@@ -150,7 +159,7 @@ export default function ResultFront(props) {
                                 Mother's Name:
                             </span>
                             <p className="resutlFrontData flex-1">
-                                {data.surName}&nbsp;{data.motherName}
+                                {data.surname}&nbsp;{data.motherName}
                             </p>
                         </div>
                         <div className="resultFrontId">
@@ -159,7 +168,7 @@ export default function ResultFront(props) {
                                     GR. Number:
                                 </span>
                                 <p className="resutlFrontData flex-1">
-                                    {data.grNumber}
+                                    {data.grNo}
                                 </p>
                             </div>
                             <div className="mt15 resultFrontFlexContainer flex-1">
@@ -167,7 +176,7 @@ export default function ResultFront(props) {
                                     UID. Number:
                                 </span>
                                 <p className="resutlFrontData flex-1">
-                                    {data.uidNumber}
+                                    {data.UdiseNo}
                                 </p>
                             </div>
                         </div>
@@ -185,7 +194,7 @@ export default function ResultFront(props) {
                                     Contact Number
                                 </span>
                                 <p className="resutlFrontData flex-1">
-                                    {data.phoneNumber}
+                                    {data.contactNo}
                                 </p>
                             </div>
                         </div>
@@ -196,5 +205,5 @@ export default function ResultFront(props) {
                 <Result />
             </div>
         </>
-    );
+    ) : null;
 }
