@@ -24,7 +24,6 @@ export default function ResultFront(props) {
 
     let data = props.resultData;
 
-    console.log(data);
     return data ? (
         <>
             <ReactToPrint

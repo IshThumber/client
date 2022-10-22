@@ -142,8 +142,6 @@ function Standard(props) {
                 setIsShown(0);
             }
             setPrevId(id);
-            console.log("prevId", prevId);
-            console.log("id", id);
         }
     };
 
