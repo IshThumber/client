@@ -53,11 +53,11 @@ const columns1 = [
         width: 190,
     },
     {
-        field: "Environment Study",
+        field: "Environmental Study",
         align: "center",
         headerClassName: "super-app-theme--header",
         headerAlign: "center",
-        headerName: "Environment Study",
+        headerName: "Environmental Study",
         flex: 1,
         width: 190,
     },
