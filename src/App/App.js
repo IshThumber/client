@@ -107,7 +107,7 @@ function App() {
                             )
                         }
                     />
-                    <Route
+                    {/* <Route
                         path="/admin/Analytics/*"
                         element={
                             isAuthenticated ? (
@@ -120,7 +120,7 @@ function App() {
                                 <Navigate replace to={"/login"} />
                             )
                         }
-                    />
+                    /> */}
                     <Route
                         path="/admin/Credentials/*"
                         element={

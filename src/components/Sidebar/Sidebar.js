@@ -87,13 +87,13 @@ const Sidebar = (props) => {
           Manage Credentials
           <Link to="/admin/Credentials" />
         </MenuItem>
-        <MenuItem
+        {/* <MenuItem
           onClick={() => setIsCollapse(!isCollapse)}
           icon={<BiAnalyse style={styleIcon} />}
         >
           Result Analysis
           <Link to="/admin/Analytics" />
-        </MenuItem>
+        </MenuItem> */}
       </Menu>
       <SidebarFooter>
         <Menu>
