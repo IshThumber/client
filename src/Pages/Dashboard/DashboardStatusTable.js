@@ -142,7 +142,7 @@ export default function DashboardStatusTable() {
   const [isRowFetched, setIsRowFetched] = useState(true);
   // async function statusData() {
 
-  // let year = 2022;
+  // let year = 2023;
   // let sem = semester.toString();
   // let status = await fetch(
   //   `http://localhost:5050/dashboard/${sessionStorage.getItem("schoolId")}/${year}/${sem}`,
@@ -174,7 +174,7 @@ export default function DashboardStatusTable() {
     // console.log("Hiiiiii");
     setIsRowFetched(false);
     async function statusData() {
-      let year = 2022;
+      let year = 2023;
       let sem = semester.toString();
       const status = await fetch(
         `http://localhost:5050/dashboard/${sessionStorage.getItem(

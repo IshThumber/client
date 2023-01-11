@@ -114,7 +114,7 @@ function Standard(props) {
       setIsShown(0);
       setIsRowsFetched(false);
       async function studentsData() {
-        let year = 2022;
+        let year = 2023;
         let std = props.standard;
         let ob = await fetch(
           `http://localhost:5050/getStandardData/${sessionStorage.getItem(
@@ -280,8 +280,7 @@ function Standard(props) {
       headerClassName: "super-app-theme--header",
       headerAlign: "center",
       valueGetter: (params) =>
-        `${params.row.surname || ""} ${params.row.studentName || ""} ${
-          params.row.fatherName || ""
+        `${params.row.surname || ""} ${params.row.studentName || ""} ${params.row.fatherName || ""
         } `,
     },
     {
@@ -423,15 +422,15 @@ function Standard(props) {
 
             {parseInt(props.standard.substring(4, 5)) > 5
               ? subjectList2.map((v) => (
-                  <option key={v.key} value={v.value}>
-                    {v.display}
-                  </option>
-                ))
+                <option key={v.key} value={v.value}>
+                  {v.display}
+                </option>
+              ))
               : subjectList.map((v) => (
-                  <option key={v.key} value={v.value}>
-                    {v.display}
-                  </option>
-                ))}
+                <option key={v.key} value={v.value}>
+                  {v.display}
+                </option>
+              ))}
           </select>
         </div>
         <div className="standard-table">
